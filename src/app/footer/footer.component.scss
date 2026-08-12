@@ -1,0 +1,231 @@
+.emailSec {
+  background-color: #3B9943;
+  background-image: linear-gradient(to right, #3b9943, #3b9941, #3b9941d4, #3b99419a),url("./../../../public/assets/images/backgroundImg.jpg");
+  background-position: right;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 2.7rem 1.8rem;
+}
+
+.emailSec h1 {
+  color: #f9fdf5;
+  font-size: 1.53rem;
+  font-weight: 600;
+}
+
+.emailSec p {
+  color: white;
+  margin-bottom: 0;
+}
+
+.emailSec input[type=text] {
+  border-radius: 5px 0 0 5px;
+  width: 79%;
+  padding: 12px 15px;
+  border: 0;
+  outline: none;
+  box-shadow: none;
+}
+
+.emailSec input[type=text]::placeholder {
+  font-size: 14px;
+  color: rgb(189, 189, 189);
+}
+
+.emailSec button {
+  background-color: #FFDE21;
+  border-radius: 0 5px 5px 0;
+  padding: 11px 15px;
+  font-weight: 500;
+  position: absolute;
+  top: 0;
+  /* height: 48px; */
+}
+
+.img-sec {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.img-sec img {
+  width: 23%;
+  height: 82px;
+  object-fit: cover;
+}
+
+.title {
+  color: #2F9E37;
+  font-size: 2.5rem;
+  line-height: 41px;
+}
+
+p {
+  margin-bottom: 0px;
+}
+
+.dark {
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.dark2 {
+  font-weight: 600;
+  margin-bottom: 26px;
+  margin-top: 2.4rem;
+}
+
+.normal {
+  color: #a5a5a5;
+  font-weight: 300;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.icons {
+  margin-top: 1.35rem;
+}
+
+.icons a {
+  padding: 7px 11px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.icons a i {
+  color: #fff;
+}
+
+.footerLinks a {
+  display: block;
+  text-decoration: none;
+  color: grey;
+  font-weight: 300;
+  font-size: 14px;
+  margin-bottom: 9px;
+}
+
+.hidden{
+  visibility: hidden;
+}
+
+.cards img{
+  width: 50px;
+  margin-left:10px ;
+}
+
+.footerContainer{
+padding-bottom: 36px;
+}
+
+.margintop{
+  margin-top: 15px;
+}
+
+.marginbottom{
+  margin-bottom: 39px;
+}
+
+
+@media screen and (max-width:840px) {
+  .emailSec{
+    padding: 1.7rem 1.8rem;
+  }
+
+  .emailSec p{
+    margin-bottom: .6rem;
+  }
+
+  .dNone{
+    display: none;
+  }
+
+  .dNoneWeb{
+    display: block !important;
+  }
+
+  .dBlockWeb{
+    display: none !important;
+  }
+
+  .cards img{
+    width: 50px;
+    margin-left: 5px;
+  }
+
+  .normal{
+    font-size: 14px;
+  }
+
+  /* .emailContainer{
+    width: 86% !important;
+  } */
+}
+
+.customBorder{
+  width: 83%;
+  border-top: 1.5px solid #d1d1d14d;
+  margin: auto;
+}
+
+.dNoneWeb{
+    display: none;
+  }
+
+  .dBlockWeb{
+    display: block;
+  }
+@media screen and (max-width:600px){
+
+  .customBorder{
+    width: 95%;
+  }
+
+  .textalignCenter{
+    text-align: center !important;
+  }
+
+  .marginZero{
+    margin: 0 !important;
+  }
+
+  /* .emailContainer{
+    width: 100% !important;
+  } */
+
+  .emailSec {
+    padding: .7rem 0rem;
+  }
+
+  .emailSec h1 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+
+  .emailSec p {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 12px;
+  }
+
+  .emailSec input[type=text] {
+    width: 68%;
+    padding: 6px 9px;
+  }
+
+  .emailSec input[type=text]::placeholder {
+    font-size: 14px;
+  }
+
+  .emailSec button {
+    padding: 5.5px 15px;
+  }
+
+  .marginbottom{
+    margin-bottom: 11px;
+  }
+}
+

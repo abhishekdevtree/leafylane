@@ -1,0 +1,212 @@
+<ng-container *ngIf="blog[0]">
+  <div class="blogHeader">
+    <img *ngIf="blog[0].images && blog[0].images.length" [src]="blog[0].images[0].regular" class="blogHeaderImage"
+      alt="background image">
+    <img src="../../assets/images/backgroundImg.jpg" *ngIf="!(blog[0].images && blog[0].images.length)"
+      class="blogHeaderImage" alt="background image">
+    <div class="container">
+      <h1>{{blog[0].title}}</h1>
+      <div>
+        <a routerLink="/">Home</a>
+        <i class="fa-solid fa-angle-right"></i>
+        <a routerLink="/blog-list">Blogs</a>
+        <i class="fa-solid fa-angle-right"></i>
+        <a [routerLink]="'/blogs/'+targetBlogId">{{blog[0].title}}</a>
+        <!-- <a [routerLink]="'/blogs/'+targetBlogId">{{headerTitle}}...</a> -->
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<div class="productsSec p-relative">
+  <div class="container">
+    <div class="row g-3">
+      <ng-container *ngIf="blog[0]">
+        <div class="col-lg-8 col-md-12">
+          <div class="bannerImg">
+            <!-- <img src="../../assets/images/blogDetails.jpg" alt="blog image"> -->
+            <img [src]="blog[0].images[0].thumb" *ngIf="blog[0].images && blog[0].images.length" class="productImg"
+              alt="product image">
+            <img src="../../assets/img/plant.png" *ngIf="!(blog[0].images && blog[0].images.length)" class="productImg"
+              alt="product image">
+            <span>{{blog[0].createdAt | date:'d MMM, y'}}</span>
+          </div>
+          <div class="userIcon">
+            <a href="#">
+              <i class="fa-solid fa-user"></i>
+              <span>Gardon</span>
+            </a>
+          </div>
+          <div class="blogDescription" [innerHTML]="blog[0]?.longDescription">
+          </div>
+
+          <div class="blogType">
+            <div class="blogTags">
+              <a>Garden</a>
+              <a>Indoor Plant</a>
+            </div>
+          </div>
+
+          <div class="reviewSec">
+            <h1>Comments</h1>
+            <div class="reviewContentBox d-flex">
+              <div class="commentUserImg">
+                <img src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg"
+                  alt="user image">
+              </div>
+              <div class="reviewText">
+                <div class="d-flex align-items-center commentUserInfo">
+                  <h3 class="">Priyal Kumar</h3>
+                  <span class="dot"></span>
+                  <p class="date mb-0">21 June,2014</p>
+                </div>
+                <!-- <div class="starBox" [formGroup]="form">
+                  <ngx-star-rating formControlName="rating" (click)="updateRating()" [id]="'rating'" [disabled]="false"></ngx-star-rating>
+                </div> -->
+                <p class="commentText">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptatum
+                  odio accusamus, quisquam, eaque voluptatibus distinctio beatae possimus ad totam saepe corrupti!
+                  Possimus, nesciunt fugit quibusdam incidunt esse minus doloremque?"</p>
+              </div>
+            </div>
+            <div class="reviewContentBox d-flex">
+              <div class="commentUserImg">
+                <img src="https://img.freepik.com/premium-vector/111_170251-1.jpg" alt="user image">
+              </div>
+              <div class="reviewText">
+                <div class="d-flex align-items-center commentUserInfo">
+                  <h3 class="">Ankita Giri</h3>
+                  <span class="dot"></span>
+                  <p class="date mb-0">21 June,2014</p>
+                </div>
+                <!-- <div class="starBox" [formGroup]="form">
+                  <ngx-star-rating formControlName="rating" (click)="updateRating()" [id]="'rating'" [disabled]="false"></ngx-star-rating>
+                </div> -->
+                <p class="commentText">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptatum
+                  odio accusamus, quisquam, eaque voluptatibus distinctio beatae possimus ad totam saepe corrupti!
+                  Possimus, nesciunt fugit quibusdam incidunt esse minus doloremque?"</p>
+              </div>
+            </div>
+            <div class="reviewContentBox d-flex">
+              <div class="commentUserImg">
+                <img
+                  src="https://img.freepik.com/premium-vector/business-man-cartoon-character-smart-clothes-office-style_51635-5680.jpg?w=2000"
+                  alt="user image">
+              </div>
+              <div class="reviewText">
+                <div class="d-flex align-items-center commentUserInfo">
+                  <h3 class="">Abhishek Bharti</h3>
+                  <span class="dot"></span>
+                  <p class="date mb-0">21 June,2014</p>
+                </div>
+                <!-- <div class="starBox" [formGroup]="form">
+                  <ngx-star-rating formControlName="rating" (click)="updateRating()" [id]="'rating'" [disabled]="false"></ngx-star-rating>
+                </div> -->
+                <p class="commentText">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptatum
+                  odio accusamus, quisquam, eaque voluptatibus distinctio beatae possimus ad totam saepe corrupti!
+                  Possimus, nesciunt fugit quibusdam incidunt esse minus doloremque?"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!(blog[0]) && !isLoading">
+        <div class="col-lg-8 col-md-12">
+          <div class="empty-portion">
+            <img src="../../assets/images/happy.png" alt="happy image">
+            <p class="title">Oops! Something is wrong.</p>
+            <p class="msg">We tried really hard but we could not find blog details.</p>
+            <button (click)="router.navigate(['/blog-list'])">Go to blogs</button>
+          </div>
+        </div>
+      </ng-container>
+
+      <div class="col-lg-4 dBlockWeb dNoneMobile">
+        <div class="leftFilterSec">
+
+          <div class="searchBox">
+            <h3>Search</h3>
+            <div class="d-flex bg-white border searchContainer">
+              <input type="text" placeholder="Search">
+              <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+          </div>
+
+          <div class="categories">
+            <h3>Tags</h3>
+            <ul>
+              <li *ngFor="let cat of globals.categories">
+
+                <a [routerLink]="'/category/' + cat._id">
+                  {{ cat.title }}
+                </a>
+
+                <!-- SUBCATEGORIES -->
+                <ul class="sublinks" *ngIf="cat.children?.length">
+                  <li *ngFor="let sub of cat.children">
+
+                    <a [routerLink]="'/category/' + sub._id">
+                      {{ sub.title }}
+                    </a>
+
+                    <!-- SUB-SUB CATEGORIES -->
+                    <ul class="sublinks" *ngIf="sub.children?.length">
+                      <li *ngFor="let subsub of sub.children">
+                        <a [routerLink]="'/category/' + subsub._id">
+                          {{ subsub.title }}
+                        </a>
+                      </li>
+                    </ul>
+
+                  </li>
+                </ul>
+
+              </li>
+            </ul>
+
+          </div>
+
+          <div class="recentPosts dWebBlock" *ngIf="recentBlogs && recentBlogs.length">
+            <h3>Recents Posts</h3>
+            <ng-container *ngFor="let slide of recentBlogs,let i = index">
+              <div class="postBox" (click)="router.navigate(['/blogs/'+slide._id]);">
+                <div class="blogImgBox">
+                  <img [src]="slide.images[0].thumb" *ngIf="slide.images && slide.images.length" class="productImg"
+                    alt="product image">
+                  <img src="../../assets/img/plant.png" *ngIf="!(slide.images && slide.images.length)"
+                    class="productImg" alt="product image">
+                </div>
+                <div class="blogText">
+                  <p class="blogTitle">{{slide.title}}</p>
+                  <p class="blogDate">{{slide.createdAt | date:'d MMM, y'}}</p>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+          <div class="recentPosts dWebNone my-3">
+            <h3 class="mx-1">Recents Posts</h3>
+            <div class="carouselBox">
+              <owl-carousel-o [options]="customOptions">
+                <ng-container *ngFor="let slide of recentBlogs,let i = index">
+                  <ng-template carouselSlide [id]="i+'a'">
+                    <div class="postBox mx-1" (click)="router.navigate(['/blogs/'+slide._id]);">
+                      <div class="blogImgBox">
+                        <img [src]="slide.images[0].thumb" *ngIf="slide.images && slide.images.length"
+                          class="productImg" alt="product image">
+                        <img src="../../assets/img/plant.png" *ngIf="!(slide.images && slide.images.length)"
+                          class="productImg" alt="product image">
+                      </div>
+                      <div class="blogText">
+                        <p class="blogTitle">{{slide.title}}</p>
+                        <p class="blogDate">{{slide.createdAt | date:'d MMM, y'}}</p>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ng-container>
+              </owl-carousel-o>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

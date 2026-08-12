@@ -1,0 +1,133 @@
+.contactPage {
+    background-color: #ffffff;
+}
+
+.bgMain {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.479), rgba(0, 0, 0, 0.479)), url('./../../../public/assets/images/bacgroundImg2.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 9rem;
+    display: flex;
+    // align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.bgMain .title {
+    color: white;
+}
+
+.leftBox p{
+    margin-bottom: 2rem;
+}
+
+.bgMain a {
+    color: white;
+    text-decoration: none;
+    margin-right: 6px;
+}
+
+.bgMain i {
+    color: white;
+    margin-right: 6px;
+
+}
+
+.contactForm {
+    padding: 3rem 0;
+}
+
+.title2 {
+    font-size: 2.1rem;
+    margin-bottom: 0;
+    color: #555354;
+}
+
+.formBox {
+
+    // display: flex;
+    // flex-direction: column;
+    label {
+        border: 1px solid #d1d1d1;
+        padding: 12px 15px;
+        color: #767676;
+        font-size: 15px;
+    }
+
+    input,
+    textarea {
+        padding: 12px 10px;
+        border: 1px solid #d1d1d1;
+        width: 100%;
+        margin-bottom: .75rem;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    textarea {
+        min-height: 9rem;
+    }
+}
+
+.leftBox button {
+    border: none;
+    outline: none;
+    background-color: #3A9A43;
+    color: white;
+    /* padding: 6px 12px; */
+    margin-bottom: 1rem;
+    height: 2.7rem;
+    width: 12rem;
+    border-radius: 9px;
+    margin-top: 1rem;
+}
+
+.rightBox{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.699), rgba(0, 0, 0, 0.699)), url('./../../../public/assets/images/bacgroundImg2.jpeg');
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.companyInfo {
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    gap: 3rem;
+}
+
+.companyInfoBox {
+    display: flex;
+    gap: 12px;
+    margin-left: 15px;
+}
+
+.iconBox i {
+    color: white;
+    font-size: 21px;
+    position: relative;
+    top: 6px;
+}
+
+.companyTitle {
+    color: white;
+    font-size: 27px;
+    margin-bottom: 0;
+}
+
+.companyText {
+    color: #ddd;
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+.companyLink {
+    color: #dddddd;
+    font-size: 12px;
+    text-decoration: none;
+}

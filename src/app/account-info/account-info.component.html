@@ -1,0 +1,121 @@
+<div class="userAccountDetails">
+    <ng-container *ngIf="mainMenu">
+        <div class="userDetailsBody">
+            <div class="userDetailsHeader">
+                <h3 class="title1">Personal Information</h3>
+                <div class="actionBtns">
+                    <button class="deleteBtn"><i class="fa-solid fa-trash"></i> <span>Delete Account</span></button>
+                    <button class="editBtn" (click)="showEditMenu()"><i class="fa-solid fa-pen-to-square"></i>
+                        <span>Edit Details</span></button>
+                </div>
+            </div>
+            <div class="userDetailsSection">
+
+                <div class="userBox">
+                    <p class="title2">Name:</p>
+                    <p class="userInfo">{{ auth.user?.name }}</p>
+                </div>
+
+                <div class="userBox">
+                    <p class="title2">Email:</p>
+                    <p class="userInfo">{{ auth.user?.email }}</p>
+                </div>
+
+                <div class="userBox"  *ngIf="defAddress?.phone">
+                    <p class="title2">Mobile Number:</p>
+                    <p class="userInfo">{{ defAddress.phone || 'Not Provided' }}</p>
+                </div>
+
+                <div class="userBox">
+                    <p class="title2">Gender:</p>
+                    <p class="userInfo">{{ auth.user?.gender || 'Not Provided' }}</p>
+                </div>
+
+                <div class="userBox">
+                    <p class="title2">Member Since:</p>
+                    <p class="userInfo">{{ auth.user?.createdAt | date:'d MMMM yyyy' }}</p>
+                </div>
+
+                <div class="userBox">
+                    <p class="title2">Address:</p>
+
+                    <p class="userInfo" *ngIf="defaultAddress">
+                        {{ defAddress.line1 }},
+                        {{ defAddress.line2 }},
+                        {{ defAddress.city }},
+                        {{ defAddress.state }} -
+                        {{ defAddress.zip }},
+                        {{ defAddress.country }}
+                    </p>
+
+                    <p class="userInfo" *ngIf="!defAddress">
+                        No default address found
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </ng-container>
+    <ng-container *ngIf="editmenu">
+        <div class="userDetailsBody userDetailsBody2">
+            <div class="userDetailsHeader">
+                <h3 class="title1">Edit Profile</h3>
+                <div class="actionBtns">
+                    <button class="deleteBtn2" (click)="showMainMenu()"><i class="fa-solid fa-xmark"></i>
+                        <span>Cancel</span></button>
+                    <button class="editBtn" (click)="showMainMenu()"><i class="fa-solid fa-floppy-disk"></i>
+                        <span>Save</span></button>
+                </div>
+            </div>
+            <div class="userDetailsSection">
+                <div class="userBox">
+                    <p class="title2">Profile Image:</p>
+                    <div class="dp-container">
+                        <span (click)="fileInput.click()" title="Change profile picture">
+                            <i class="fas fa-camera"></i>
+                        </span>
+                        <!-- <img src="../../assets/images/userImg.png" default="../../assets/images/flower4.jpg" class="profile-user-img"/> -->
+                        <img [src]="imageUrl" default="../../assets/images/flower4.jpg" class="profile-user-img" />
+                        <input style="display: none" type="file" accept="image/gif, image/jpeg, image/png"
+                            (change)="handleFileInput($event.target.files)" #fileInput>
+                        <!-- <button class="apply-button" style="    margin-top: 9px;"> <i class="fas fa-camera"></i> Change</button> -->
+                    </div>
+                </div>
+                <div class="userBox">
+                    <p class="title2">Name:</p>
+                    <input type="text" placeholder="Enter Your Name" [value]="auth.user.name" class="form-control">
+                </div>
+                <div class="userBox">
+                    <p class="title2">Email:</p>
+                    <input type="text" placeholder="Enter Your Email" [value]="auth.user.email"
+                        class="form-control">
+                </div>
+                <div class="userBox">
+                    <p class="title2">Mobile Number:</p>
+                    <input type="text" placeholder="Enter Your Mobile No." [value]="defAddress.phone" class="form-control">
+                </div>
+                <div class="userBox">
+                    <p class="title2">Gender:</p>
+                    <select name="gender" id="gender" class="form-select">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Custom">Custom</option>
+                    </select>
+                </div>
+                <div class="userBox">
+                    <p class="title2">Date Of Birth:</p>
+                    <input type="text" placeholder="Enter Your Birthdate" value="21/October/2002" class="form-control">
+                </div>
+
+                <div class="userBox align-items-start">
+                    <p class="title2">Address:</p>
+                    <textarea name="Address" id="Address"
+                        [value]="'01, Habul Nagar, Madhyamgram, Jessore Road, Kolkata - 700129, West Bengal, India'"
+                        placeholder="Enter Your Address" class="form-control"></textarea>
+                </div>
+
+            </div>
+        </div>
+    </ng-container>
+</div>

@@ -1,0 +1,147 @@
+<div class="cartPage">  
+    <div class="container">
+        <div class="d-flex flexColumn">
+            <div class="leftSideBox">
+                <div class="position flexBox2">
+                    <div class="boxPosition">
+                        <p class="number">1</p>
+                        <p class="step">Cart</p>
+                    </div>
+                    <div class="boxPosition2">
+                        <p class="number">2</p>
+                        <p class="step">Address</p>
+                    </div>
+                    <div class="boxPosition3">
+                        <p class="number">3</p>
+                        <p class="step">Payment</p>
+                    </div>
+                </div>
+                <div class="mbOne userDetails">
+                    <div class="flexBox1 pThree">
+                        <p class="bottomText colorTwo">TOTAL AMOUNT PAYABLE</p>
+                        <p class="bottomText colorTwo">₹{{this.userService.cart.final_cart_value}}</p>
+                    </div>
+                </div>
+                <div class="transSectionSec">
+                    <p class="title_text2">Payment</p>
+                    <p class="info_text">All the transactions are secured and encrypted</p>
+                    <div class="transactionBox mb-4">
+                        <div class="transactionOptions cash flexBox1 flexColumn2">
+                            <div class="method">
+                                <label class="radioBtn" (click)="selectedIndex = 0">Cash On Delivery
+                                    <input type="radio" [checked]="selectedIndex == 0" name="radio">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="methodInfo">
+                                <div class="d-flex justify-content-end align-items-end">
+                                    <!-- <img src="../../assets/images/upi_logo.png" class="methodImg" alt="payment methods Img">
+                                    <img src="../../assets/images/visa.png" class="methodImg" alt="payment methods Img">
+                                    <img src="../../assets/images/mastercard.png" class="methodImg" alt="payment methods Img">
+                                    <img src="../../assets/images/Rupay-Logo.png" class="methodImg" alt="payment methods Img">
+                                    <p>and more ...</p> -->
+                                    <img src="../../assets/images/cod.jpg" class="methodImg" alt="payment methods Img" style="width: 9rem;height: 3rem;object-fit: contain;border: none;">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="transactionDetails">
+                            <img src="../../assets/images/icon.png" alt="payment image">
+                            <p>After clicking "complete order", You will be redirect to Razorpay Secure (UPI, Cards, Wallet, NetBanking) to complete your purchase securely.</p>
+                        </div> -->
+                    </div>
+                 <div class="transactionBox">
+                        <div class="transactionOptions flexBox1 flexColumn2">
+                            <div class="method">
+                                <label class="radioBtn" (click)="selectedIndex = 1">Razorpay Secure (UPI, Cards, Wallet, NetBanking)
+                                    <input type="radio" [checked]="selectedIndex == 1" name="radio">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="methodInfo">
+                                <div class="d-flex justify-content-end align-items-end">
+                                    <img src="../../assets/images/upi_logo.png" class="methodImg" alt="payment methods Img">
+                                    <img src="../../assets/images/visa.png" class="methodImg" alt="payment methods Img">
+                                    <img src="../../assets/images/mastercard.png" class="methodImg" alt="payment methods Img">
+                                    <img src="../../assets/images/Rupay-Logo.png" class="methodImg" alt="payment methods Img">
+                                    <p>and more ...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="transactionDetails">
+                            <img src="../../assets/images/icon.png" alt="payment image">
+                            <p>After clicking "complete order", You will be redirect to Razorpay Secure (UPI, Cards, Wallet, NetBanking) to complete your purchase securely.</p>
+                        </div> -->
+                    </div>
+
+                </div>
+                
+                <div class="flexBox1">
+                    <div class="navigationButton">
+                        <a routerLink="/checkout"><i class="fa-solid fa-arrow-left-long"></i> Return to address</a>
+                    </div>
+                    <div class="paymentBtn">
+                        <button type="button" (click)="placeOrder()" [disabled]="selectedIndex == 1" >Complete Order</button>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="rightSideBox dNone" *ngIf="userService.cart.items && userService.cart.items.length">
+                <div class="rightContainer borderBottom pb33">
+                    <h3 class="titleText2">Order Details</h3>
+                </div>
+                <div class="flexBox1 mt2" *ngFor="let item of userService.cart.items; let id = index">
+                            <div class="leftSideSec">
+                                <div class="d-flex gap21 align-items-center">
+                                    <a [routerLink]="'/product/' + item.productInfo._id">
+                                        <img [src]="item.productInfo?.images[0]?.regular" class="productImage"
+                                            alt="product image" />
+                                    </a>
+                                    <div class="productDetails">
+                                        <a [routerLink]="'/product/' + item.productInfo._id">
+                                            <h3 class="productName">{{item.productInfo.title}}</h3>
+                                        </a>
+                                        <a routerLink="/tags">
+                                            <p class="category">{{item.productInfo.categoryInfo.title}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rightSideSec">
+                                <span> x{{item.qty}}</span>
+                            </div>
+                        </div>
+                <div class="orderDeatilsBottom">
+                    <div class="flexBox1">
+                        <p class="bottomText">Total Items ({{userService.cart.items.length}})</p>
+                        <p class="bottomText">₹{{userService.cart.final_cart_value}}</p>
+                    </div>
+                    <div class="flexBox1">
+                        <p class="bottomText">Delivery Charges</p>
+                        <p class="bottomText colorGreen">₹{{globalService.deliveryCharges}}</p>
+                    </div>
+                    <div class="flexBox1 borderBottom borderTop pTwo">
+                        <p class="bottomText colorTwo">AMOUNT PAYABLE</p>
+                        <p class="bottomText colorTwo">₹{{userService.cart.final_cart_value + globalService.deliveryCharges}}</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" [class.show]="showTransactionPopup">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <img src="../../assets/images/sucessLogo.png" alt="payment success image">
+        <h1>Thank you for shopping with us</h1>
+        <p>Your order has been placed. For more info about your order go to order section in my account page</p>
+        <div class="btnSec">
+            <a routerLink="/" class="a1" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Back to Home</a>
+            <a routerLink="/profile/my-orders" class="a2" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Go to Order Details</a>
+        </div>
+      </div>
+    </div>
+  </div>

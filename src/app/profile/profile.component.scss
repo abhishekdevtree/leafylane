@@ -1,0 +1,160 @@
+.container {
+    margin-bottom: 3rem;
+}
+
+.userInfo {
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: .84rem;
+    // border: 1px solid #d1d1d1;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 0;
+    box-shadow: 0 0 15px 1px #00000014;
+    border-radius: 6px;
+}
+
+.userImg {
+    width: 60px;
+    border: 1px solid #d1d1d1;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.greetUser {
+    span {
+        font-size: 13px;
+        color: #5a5a5a;
+        font-weight: 500;
+    }
+
+    p {
+        font-weight: 500;
+        font-size: 18px;
+    }
+}
+
+.actionBtns {
+    border-radius: 6px;
+    box-shadow: 0 0 15px 1px #00000014;
+    overflow: hidden;
+
+    button {
+        width: 100%;
+        height: 60px;
+        border: none;
+        outline: none;
+        display: flex;
+        background-color: transparent;
+        align-items: center;
+        border-bottom: 1px solid #e8e8e8;
+        position: relative;
+        padding-left: 3.6rem;
+        font-size: 15px;
+        font-weight: 500;
+
+        i {
+            position: absolute;
+            left: 15px;
+            color: #3A9A43;
+            font-size: 15px;
+            border: 1px solid #d1d1d1;
+            padding: 6px;
+            border-radius: 3px;
+        }
+    }
+}
+
+.rightSideBox {
+    box-shadow: 0 0 15px 1px #00000014;
+    padding: 0.2rem 1.2rem 0;
+    margin-top: 4rem;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.active {
+    background-color: #8decb559 !important;
+    color: rgb(0, 0, 0);
+
+    i {
+        color: #3A9A43 !important;
+    }
+}
+
+.d-none {
+    display: none;
+}
+
+.d-block {
+    display: block;
+}
+
+.responsiveHeader {
+    position: relative;
+}
+
+.activeNav {
+    right: 0px !important;
+    display: block !important;
+    // left: 0 !important;
+}
+
+.open-btn{
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 21px;
+}
+
+@media screen and (max-width: 850px) {
+    .d-block {
+        display: none !important;
+    }
+
+    .d-none {
+        display: block !important;
+    }
+
+    .wrapper-main {
+        position: absolute;
+        background: white;
+        top: -18px;
+        right: -150%;
+        padding-bottom: 3rem;
+        width: 100%;
+        transition:all .4s ease;
+        z-index: 10;
+        display: none;
+    }
+
+    .userInfo {
+        display: flex;
+        align-items: center;
+        padding: 6px 0 6px 18px;
+        justify-content: space-between;
+        margin-top: 2rem;
+    }
+
+    .closeBtn {
+        border: none;
+        background-color: transparent;
+        outline: none;
+        margin-right: 1rem;
+        font-size: 21px;
+        position: relative;
+        bottom: 6px;
+    }
+
+    .rightSideBox{
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .rightSideBox{
+        padding: 0;
+    }
+}

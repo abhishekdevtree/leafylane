@@ -1,0 +1,123 @@
+<section class="about-container">
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Our Story at <span class="brand-name">LeafyLane</span></h1>
+            <p class="hero-subtitle">Where nature finds its perfect home</p>
+            <p class="hero-description">For over 15 years, we've been cultivating not just plants, but relationships with our community, helping every garden grow and every space bloom.</p>
+        </div>
+        <div class="hero-image">
+            <img [src]="nurseryImage" alt="Beautiful nursery landscape at LeafyLane" [class.loaded]="imageLoaded">
+        </div>
+    </div>
+
+    <div class="story-section">
+        <div class="section-header">
+            <h2 class="section-title">Our Journey</h2>
+            <p class="section-subtitle">From a small seedling to a thriving garden community</p>
+        </div>
+        <div class="story-content">
+            <div class="story-text">
+                <p>LeafyLane began in 2008 as a small family-owned nursery with a simple vision: to bring the beauty of nature closer to home. What started with a handful of plants and a big dream has blossomed into one of the region's most beloved garden centers.</p>
+                <p>Our founder, Emily Greenfield, believed that every home deserves a touch of greenery. Today, we continue her legacy by providing not just plants, but personalized guidance, sustainable practices, and a welcoming space for both novice and experienced gardeners.</p>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Years of Service</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Plant Varieties</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10k+</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                </div>
+            </div>
+            <div class="story-image">
+                <img src="https://cdn.dtsdev.xyz/blog/1723631199252.jpg" alt="Our beautiful nursery landscape">
+            </div>
+        </div>
+    </div>
+</section>
+
+    <div class="values-section">
+        <div class="section-header center">
+            <h2 class="section-title">Our Core Values</h2>
+            <p class="section-subtitle">The principles that guide everything we do</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-card" *ngFor="let value of values" [@fadeInUp]>
+                <div class="value-icon-wrapper">
+                    <i [class]="value.icon"></i>
+                </div>
+                <div class="value-content">
+                    <h3 [innerHTML]="value.title"></h3>
+                    <p>{{value.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="team-section">
+        <div class="section-header center">
+            <h2 class="section-title">Meet Our Garden Experts</h2>
+            <p class="section-subtitle">Passionate professionals dedicated to helping your garden thrive</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card" *ngFor="let member of teamMembers" [@staggerAnimation]>
+                <div class="team-image">
+                    <img [src]="member.image" [alt]="member.name">
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h3>{{member.name}}</h3>
+                    <p class="team-role">{{member.role}}</p>
+                    <p class="team-description">{{member.description}}</p>
+                    <div class="team-expertise">
+                        <span *ngFor="let expertise of member.expertise" class="expertise-tag">{{expertise}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Space?</h2>
+            <p>Visit our nursery today and let our experts help you create the garden of your dreams.</p>
+            <div class="cta-buttons">
+                <a [routerLink]="['/contact']" class="btn-primary">Plan Your Visit</a>
+                <a [routerLink]="['/shop']" class="btn-secondary">Browse Plants</a>
+            </div>
+        </div>
+        <div class="cta-info">
+            <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <h4>Opening Hours</h4>
+                    <p>Mon-Sat: 9AM-7PM</p>
+                    <p>Sunday: 10AM-5PM</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <h4>Visit Us</h4>
+                    <p>123 Garden Lane</p>
+                    <p>Greenville, GL 12345</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <h4>Get In Touch</h4>
+                    <p>(555) 123-4567</p>
+                    <p>hello@leafylane.com</p>
+                </div>
+            </div>
+        </div>
+    </div>

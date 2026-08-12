@@ -1,0 +1,163 @@
+.addressSec {
+    padding: 1.3rem 0 1.5rem;
+}
+
+.title {
+    font-size: 21px;
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.addNew {
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 15px;
+    background: #3A9A43;
+    width: 10rem;
+    border-radius: 6px;
+    cursor: pointer;
+    height: 36px;
+}
+
+.addressBox {
+    border: 1px solid #eaeaea;
+    padding: 15px 15px;
+    margin-top: 1rem;
+    border-radius: 9px;
+}
+
+.topBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.name {
+    margin: 0;
+    font-weight: 500;
+    color: #333;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+
+    span {
+        margin: 0 10px;
+        padding: 2px 6px;
+        background: #4dff9887;
+        font-size: 12px;
+        font-weight: 500;
+        border-radius: 4px;
+    }
+}
+
+.topTitleBox{
+    margin-bottom: 1.5rem;
+}
+
+.checkedBtn {
+    border: none;
+    outline: none;
+    background-color: #3A9A43 !important;
+    font-size: 12px;
+    //
+    gap: 6px;
+    color: #fff;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    padding: 2px 6px;
+    border-radius: 5px;
+}
+.uncheckedBtn {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #3A9A43;
+    font-weight: 600;
+    font-size: 12px;
+    margin-right: 30px;
+    padding: 0;
+}
+
+.modalBtn {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 0;
+}
+
+.addressRightSideBox {
+    display: flex;
+}
+
+.dropdown-menu {
+    padding: 1rem;
+
+    button {
+        display: block;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        font-weight: 600;
+        font-size: 12px;
+        padding: 0;
+    }
+
+    .editBtn{
+        margin-bottom: 1rem;
+    }
+}
+
+.address{
+    margin-top: 5px;
+    font-weight: 500;
+    font-size: 13px;
+    color: #999;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.dNone{
+    display: none;
+}
+
+.dBlock{
+    display: block;
+}
+
+@media screen and (max-width: 500px) {
+    .dNone{
+        display: block !important;
+    }
+    
+    .dBlock{
+        display: none !important;
+    }
+
+    .dropdown-menu .checkedBtn{
+        margin-right: 0 !important;
+        padding: 3px 5px !important;
+    }
+
+    .dropdown-menu.show{
+        padding: .75rem;
+
+        button{
+            margin-right: 0;
+            color: black;
+        }
+
+        .checkedBtn{
+            color: #fff;
+        }
+    }
+
+    .editBtn,.deleteBtn,.address-btn,.m-75{
+        margin-bottom: .75rem;
+    }
+}

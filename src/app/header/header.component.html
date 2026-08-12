@@ -1,0 +1,271 @@
+<header class="header1">
+  <div class="container px-2">
+    <div class="d-flex justify-content-between topNav mx-1 align-items-center border-bottom py-2">
+      <div class="d-flex align-items-center">
+        <p>Follow Us:</p>
+        <div class="d-flex icons align-items center">
+          <a href="#"><i class="lab la-facebook-f"></i></a>
+          <a href="#"><i class="lab la-twitter"></i></a>
+          <a href="#"><i class="lab la-google-plus"></i></a>
+          <a href="#"><i class="lab la-instagram"></i></a>
+          <a href="#"><i class="lab la-youtube"></i></a>
+        </div>
+      </div>
+      <div class="myAccount">
+        <div class="dropdown me-0">
+          <ng-container *ngIf="auth.user && auth.user.role === 'customer'; else showLoginSignup">
+            <button type="button" class="btndropdown-toggle bg-transparent border-0 text-white topDropDown"
+              data-bs-toggle="dropdown">
+              My Account
+              <i class="las la-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
+              <li><a class="dropdown-item" routerLink="/profile/my-orders">Track Orders</a></li>
+              <li><button class="loginBtn" type="button" (click)="auth.logout()">Sign Out</button></li>
+            </ul>
+          </ng-container>
+          <ng-template #showLoginSignup>
+            <button class="button" type="button"
+              class="btndropdown-toggle bg-transparent border-0 text-white topDropDown" data-bs-toggle="modal"
+              data-bs-target="#login">Login/Sign Up</button>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+
+<header class="header2">
+  <div class="container px-2 py-1">
+    <div class="m-1 row align-items-center justify-content-between">
+      <div class="col-md-3 d-flex p-0">
+        <!-- <img src="../../assets/images/leave.png" alt="leave image" class="leaveImg d-inline"> 
+        <h1 class="heading mb-0">leafy lane</h1> -->
+        <img src="assets/img/logo.png" (click)="router.navigate([''])" alt="companylogo" class="companyLogo">
+      </div>
+      <div class="col-md-5 p-0">
+        <div class="searchBox ">
+          <input type="text" placeholder="Search entire store here..." class="form-control" #searchInputElement
+            (keyup.enter)="getSearchResultWithKeywords(global.searchString)" autocomplete="off" id="searchBox"
+            type="text" [(ngModel)]="global.searchString" (ngModelChange)="checkSearchEmpty();performSearch()">
+          <button class=""><i class="las la-search"></i></button>
+        </div>
+      </div>
+
+      <div class="col-md-4 d-flex justify-content-end p-0">
+        <div class="leftSec d-flex">
+          <img src="assets/images/service.png" alt="Customer service">
+          <div class="textBox">
+            <p class="mb-0">Customer Support</p>
+            <h2><a class="callBtn" href="tel:+9118003456789">1800-345-6789</a></h2>
+          </div>
+        </div>
+        <div class="rightSec">
+          <a routerLink="/cart"><i class="las la-shopping-cart"></i> <span
+              *ngIf="userService.cart?.items?.length">{{userService.cart.items.length}}</span></a>
+        </div>
+
+      </div>
+    </div>
+    <div class="search-listing fadeIn" *ngIf="global.searchSuggestion()">
+      <!-- SKELETON LOADING -->
+      <div class="row skeleton" *ngIf="suggestionSkeletonLoader">
+        <div class="col-md-12" *ngFor="let skeletonDemo of skeletonDemoLoading">
+          <div class="single-search-option" style="">
+            <div class="skeleton-loading light" style="height: 35px;width: 15%;"></div>
+            <p class="skeleton-loading light" style="height: 35px;width: 85%;"></p>
+          </div>
+        </div> 
+      </div>
+      <!-- SKELETON LOADING -->
+
+      <div *ngIf="!suggestionSkeletonLoader && suggestedProducts && suggestedProducts.length">
+        <ng-container *ngFor="let product of suggestedProducts">
+          <div class="single-search-option" (click)="router.navigate(['/product/' + product._id]);global.searchSuggestion.set(false)">
+            <img class="sg-img" [src]="product.images.length ? product.images[0].regular : 'assets/images/pot1.png'" />
+            <div>
+              <p>{{product.title}}</p>
+              <p class="search-productcategory"> in {{product.categoryInfo.title}}</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <div *ngIf="loadMoreResultTemplate">
+        <div class="load-more-result" (click)="router.navigate(['search'])">{{'Show More Result'}} <i class="fas fa-arrow-right ml-2"
+            style="font-size: 12px"></i></div>
+      </div>
+
+
+
+
+
+
+      <!-- If no result found -->
+      <ng-container *ngIf="!suggestionSkeletonLoader && !suggestedProducts.length">
+        <div class="single-search-option-ns">
+          <p>
+            {{'Nothing found'}}
+          </p>
+        </div>
+      </ng-container>
+
+    </div>
+  </div>
+  <div class="navSec shadow">
+    <div class="container px-2 py-1">
+      <div class="d-flex m-1 align-items-center">
+        <div class="dropdown" *ngFor="let item of categories; let i = index">
+          <button type="button" class="btndropdown-toggle bg-transparent border-0 navDropDown" data-toggle="dropdown"
+            [routerLink]="'/category/'+item._id">
+            {{item.title}}
+            <i class="las la-angle-down" *ngIf="item.children?.length > 0"></i>
+          </button>
+          <ul *ngIf="item.children && item.children.length > 0" class="dropdown-menu">
+            <li *ngFor="let childItem of item.children; let i = index">
+              <a class="dropdown-item" [routerLink]="'/category/'+childItem._id">{{childItem.title}}</a>
+              <ul *ngIf="childItem.children && childItem.children.length > 0"
+                style="list-style: none;padding-left: 15px;">
+                <li *ngFor="let childChildItem of childItem.children; let j = index"><a class="dropdown-item"
+                    [routerLink]="'/category/'+childChildItem._id">{{childChildItem.title}}</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="dropdown">
+          <a routerLink="/blog-list" class="link">Blogs</a>
+        </div>
+        <a routerLink="/contact-us" class="link">Contact</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<header class="responsiveHeader p-2">
+  <div class="container p-0">
+    <div class="m-1 mt-0 d-flex align-items-center justify-content-between">
+      <div class="d-flex p-0" (click)="router.navigate([''])">
+        <img src="assets/images/leave.png" alt="leave image" class="leaveImg d-inline">
+        <h1 class="heading mb-0">leafy lane</h1>
+      </div>
+      <div class="d-flex align-items-center justify-content-center gap-3">
+        <a routerLink="/cart" class="mobileCart"><i class="las la-shopping-cart"></i></a>
+        <button class="menuBtn" (click)="responsiveMenu()"><i class="fa-solid" [class.fa-xmark]="showMenu"
+            [class.fa-bars]="!showMenu"></i></button>
+      </div>
+    </div>
+  </div>
+  <div class="container p-0">
+    <div class="searchBox ">
+      <input type="text" placeholder="Search entire store here..." class="form-control">
+      <button class=""><i class="las la-search"></i></button>
+    </div>
+  </div>
+  <div class="responsiveMenu p-3" [class.showMenu]="showMenu">
+    <div class="d-flex justify-content-between flex-column" style="min-height: 84vh;">
+      <div class="topMenu">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex p-0" (click)="router.navigate(['']);responsiveMenu()">
+            <img src="assets/images/leave.png" alt="leave image" class="leaveImg d-inline"
+              (click)="router.navigate(['']);">
+            <h1 class="heading mb-0">leafy lane</h1>
+            <!-- <img src="../../assets/img/logo.png" (click)="router.navigate([''])"  alt="companylogo" class="companyLogo"> -->
+          </div>
+          <div class="">
+            <button class="menuBtn" (click)="responsiveMenu()"><i class="fa-solid" [class.fa-xmark]="showMenu"
+                [class.fa-bars]="!showMenu"></i></button>
+          </div>
+        </div>
+        <div class="searchBox mt-3">
+          <input type="text" placeholder="Search entire store here..." class="form-control">
+          <button class=""><i class="las la-search"></i></button>
+        </div>
+
+        <div class="accordion border-0 mt-3 accordion-flush" id="accordionExample">
+
+          <div class="accordion-item border-0" *ngFor="let item of categories; let i = index">
+            <h2 class="accordion-header" id="heading-{{i}}">
+
+              <button class="accordion-button" [ngClass]="{ 'collapsed': true, 'no-arrow': !item.children?.length }"
+                type="button" *ngIf="item.children?.length > 0" data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#collapse-'+i" aria-expanded="false" [attr.aria-controls]="'collapse-'+i">
+                <span (click)="router.navigate(['/category', item._id]); responsiveMenu()">
+                  {{item.title}}
+                </span>
+              </button>
+
+              <!-- If NO children → No Accordion Button, Only Link -->
+              <button class="accordion-button no-arrow" type="button" *ngIf="!item.children?.length"
+                (click)="router.navigate(['/category', item._id]); responsiveMenu()">
+                {{item.title}}
+              </button>
+
+            </h2>
+
+            <!-- COLLAPSE CONTENT -->
+            <div *ngIf="item.children?.length > 0" [id]="'collapse-'+i" class="accordion-collapse collapse"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+
+                <!-- CHILD LEVEL -->
+                <ul>
+                  <li *ngFor="let child of item.children; let ci = index">
+
+                    <a class="dropdown-item" (click)="router.navigate(['/category', child._id]); responsiveMenu()">
+                      {{child.title}}
+                    </a>
+
+                    <!-- SUB-CHILD LEVEL -->
+                    <ul *ngIf="child.children?.length > 0" style="list-style:none; padding-left: 15px;">
+                      <li *ngFor="let sub of child.children">
+                        <a class="dropdown-item" (click)="router.navigate(['/category', sub._id]); responsiveMenu()">
+                          {{sub.title}}
+                        </a>
+                      </li>
+                    </ul>
+
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+
+        <div class="mobileLinks">
+          <a routerLink="/blog-list" class="d-block mobileLink" (click)="responsiveMenu()">Blogs</a>
+          <a routerLink="/profile" *ngIf="auth.user && auth.user.role === 'customer'" class="d-block mobileLink"
+            (click)="responsiveMenu()">My Account</a>
+          <a routerLink="/contact-us" (click)="responsiveMenu()" class="d-block mobileLink">Contact</a>
+          <button class="loginBtn-mobile" *ngIf="!(auth.user && auth.user.role === 'customer')" type="button"
+            data-bs-toggle="modal" data-bs-target="#login" (click)="responsiveMenu()">Login/Signup</button>
+        </div>
+      </div>
+
+      <div class="bottomMenu">
+        <div class="leftSec d-flex">
+          <img src="assets/images/service.png" alt="Customer service">
+          <div class="textBox">
+            <p class="mb-0">Customer Support</p>
+            <h2><a class="callBtn" href="tel:+9118003456789">(+91) 1800-345-6789</a></h2>
+          </div>
+        </div>
+        <div class="d-flex align-items-center mobileSocial gap-3">
+          <p class="mb-0">Follow Us:</p>
+          <div class="d-flex icons align-items center">
+            <a href="#"><i class="lab la-facebook-f"></i></a>
+            <a href="#"><i class="lab la-twitter"></i></a>
+            <a href="#"><i class="lab la-google-plus"></i></a>
+            <a href="#"><i class="lab la-instagram"></i></a>
+            <a href="#"><i class="lab la-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

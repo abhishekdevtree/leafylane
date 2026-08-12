@@ -1,0 +1,225 @@
+<div class="productsSec p-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 dBlockWeb dNoneMobile">
+        <div class="leftFilterSec">
+
+          <div class="searchBox dWebBlock">
+            <h3>Search</h3>
+            <div class="d-flex bg-white border searchContainer">
+              <input type="text" placeholder="Search">
+              <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+          </div>
+
+          <div class="searchBox dWebNone" style="position: relative;">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h3 class="mb-0">Search</h3>
+              <button class="filterBtnMob dNoneWeb" [class.filterBtnActive]="filterMenu" (click)="showFilters()"
+                title="Filter">Filter <i class="fa-solid fa-filter"></i></button>
+            </div>
+            <div class="d-flex bg-white border searchContainer">
+              <input type="text" placeholder="Search in blogs...">
+              <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="responsiveFilterSec dBlockWeb" [class.toggle]="filterMenu">
+              <div class="responsiveFilter">
+                <button class="CloseBtn" (click)="showFilters()"><i class="fa-sharp fa-regular fa-xmark"></i></button>
+                <div class="categories">
+                  <h3>Tags</h3>
+                  <ul>
+                    <li *ngFor="let cat of globals.categories">
+
+                      <a [routerLink]="'/category/' + cat._id">
+                        {{ cat.title }}
+                      </a>
+
+                      <!-- SUBCATEGORIES -->
+                      <ul class="sublinks" *ngIf="cat.children?.length">
+                        <li *ngFor="let sub of cat.children">
+
+                          <a [routerLink]="'/category/' + sub._id">
+                            {{ sub.title }}
+                          </a>
+
+                          <!-- SUB-SUB CATEGORIES -->
+                          <ul class="sublinks" *ngIf="sub.children?.length">
+                            <li *ngFor="let subsub of sub.children">
+                              <a [routerLink]="'/category/' + subsub._id">
+                                {{ subsub.title }}
+                              </a>
+                            </li>
+                          </ul>
+
+                        </li>
+                      </ul>
+
+                    </li>
+                  </ul>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="categories dWebBlock">
+            <h3>Tags</h3>
+            <ul>
+              <li *ngFor="let cat of globals.categories">
+
+                <a [routerLink]="'/category/' + cat._id">
+                  {{ cat.title }}
+                </a>
+
+                <!-- SUBCATEGORIES -->
+                <ul class="sublinks" *ngIf="cat.children?.length">
+                  <li *ngFor="let sub of cat.children">
+
+                    <a [routerLink]="'/category/' + sub._id">
+                      {{ sub.title }}
+                    </a>
+
+                    <!-- SUB-SUB CATEGORIES -->
+                    <ul class="sublinks" *ngIf="sub.children?.length">
+                      <li *ngFor="let subsub of sub.children">
+                        <a [routerLink]="'/category/' + subsub._id">
+                          {{ subsub.title }}
+                        </a>
+                      </li>
+                    </ul>
+
+                  </li>
+                </ul>
+
+              </li>
+            </ul>
+
+          </div>
+
+          <div class="recentPosts dWebBlock" *ngIf="recentBlogs && recentBlogs.length">
+            <h3>Recents Posts</h3>
+            <ng-container *ngFor="let slide of recentBlogs,let i = index">
+              <div class="postBox" (click)="router.navigate(['/blogs/'+slide._id]);">
+                <div class="blogImgBox">
+                  <img [src]="slide.images[0].thumb" *ngIf="slide.images && slide.images.length" class="productImg"
+                    alt="product image">
+                  <img src="../../assets/img/plant.png" *ngIf="!(slide.images && slide.images.length)"
+                    class="productImg" alt="product image">
+                </div>
+                <div class="blogText">
+                  <p class="blogTitle">{{slide.title}}</p>
+                  <p class="blogDate">{{slide.createdAt | date:'d MMM, y'}}</p>
+                </div>
+              </div>
+            </ng-container>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-12">
+        <div class="row">
+          <ng-container *ngIf="blogs && blogs.length">
+            <div class="col-lg-12 col-md-6" *ngFor="let blog of blogs;let i = index">
+              <div class="mainPost" (click)="router.navigate(['/blogs/'+blog._id]);">
+                <div class="row">
+                  <div class="col-lg-6" (click)="router.navigate(['/blogs/'+blog._id]);">
+                    <div class="postImg">
+                      <img [src]="blog.images[0].thumb" *ngIf="blog.images && blog.images.length" class="productImg"
+                        alt="product image">
+                      <img src="../../assets/img/plant.png" *ngIf="!(blog.images && blog.images.length)"
+                        class="productImg" alt="product image">
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="postText">
+                      <h3 class="postTitle">{{blog.title}}</h3>
+                      <div class="postDetails">
+                        <div class="user"><img [src]="userImg" alt="user image"> <a href="#">{{username}}</a></div>
+                        <div class="line"></div>
+                        <div class="postDate"><i class="fa-solid fa-calendar-days"></i>
+                          <p>{{blog.createdAt | date:'d MMM, y'}}</p>
+                        </div>
+                      </div>
+                      <div class="postDescription">
+                        <p>{{blog.description}}</p>
+                      </div>
+                      <a [routerLink]="'/blogs/'+blog._id" class="postLink">Read More</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="!(blogs && blogs.length) && !isLoading">
+            <div class="col-lg-12">
+              <div class="empty-portion">
+                <img src="../../assets/images/happy.png" alt="happy image">
+                <p class="title">Oops! Something is wrong.</p>
+                <p class="msg">We tried really hard but we could not find any blog.</p>
+                <button (click)="router.navigate([''])">Go back home</button>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <!-- <div class="mainPost">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="postImg">
+                <img src="../../assets/images/blogImage.jpg" alt="blog post image">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="postText">
+                <h3 class="postTitle">3 things everyone knows about plant</h3>
+                <div class="postDetails">
+                  <div class="user"><img src="../../assets/images/user.png" alt="user image"> <a href="#">admin</a></div>
+                  <div class="line"></div>
+                  <div class="postDate"><i class="fa-solid fa-calendar-days"></i> <p>24 august, 2019</p></div>
+                </div>
+                <div class="postDescription">
+                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe nisi magni beatae atque tenetur, recusandae exercitationem debitis rerum dignissimos.</p>
+                </div>
+                <a href="#" class="postLink">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div class="pagination border" *ngIf="blogs.length > 9">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="pages">
+              <button class="active">1</button>
+              <button>2</button>
+              <button><i class="las la-angle-right"></i></button>
+              <button><i class="las la-step-forward"></i></button>
+            </div>
+            <p class="mb-0 customPages">Showing 1 to 9 of 15 (2 pages)</p>
+          </div>
+        </div>
+        <div class="recentPosts dWebNone my-3" *ngIf="recentBlogs && recentBlogs.length">
+          <h3 class="mx-1">Recents Posts</h3>
+          <div class="carouselBox">
+            <owl-carousel-o [options]="customOptions">
+              <ng-container *ngFor="let slide of recentBlogs,let i = index">
+                <ng-template carouselSlide [id]="i+'a'">
+                  <div class="postBox mx-1" (click)="router.navigate(['/blogs/'+slide._id]);">
+                    <div class="blogImgBox">
+                      <img [src]="slide.images[0].thumb" *ngIf="slide.images && slide.images.length" class="productImg"
+                        alt="product image">
+                      <img src="../../assets/img/plant.png" *ngIf="!(slide.images && slide.images.length)"
+                        class="productImg" alt="product image">
+                    </div>
+                    <div class="blogText">
+                      <p class="blogTitle">{{slide.title}}</p>
+                      <p class="blogDate">{{slide.createdAt | date:'d MMM, y'}}</p>
+                    </div>
+                  </div>
+                </ng-template>
+              </ng-container>
+            </owl-carousel-o>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="wishlistSec">
+    <div class="container" *ngIf="false">
+        <h3 class="title1">My Wishlist</h3>
+        <div class="productContainer">
+            <ng-container  *ngFor="let item of arr">
+                <div class="productBox">
+                    <!-- <img src="../../assets/images/flower.jpg" class="productImg" alt="product image"> -->
+                    <div class="imgBox">
+                        <img [src]="item" class="productImg" alt="product image">
+                    </div>
+                    <div class="productDetails">
+                        <a [routerLink]="'/product/'+1" class="productName d-block">Bonsai Plant (Red Leaves)</a>
+                        <a [routerLink]="'/categori/'+'bonsai'" class="productCategory d-block">Bonsai</a>
+                        <div class="d-flex actionSec">
+                            <div class="leftSideBox">
+                                <p class="priceNow d-inline mb-0">₹ 120.00</p>
+                                <s class="priceBefore d-inline mb-0">₹ 150.00</s>
+                            </div>
+                            <button class="cartBtn"><i class="fa-solid fa-cart-plus"></i> Add To Cart</button>
+                        </div>
+                        <button class="heartBtn"><i class="fa-solid fa-heart"></i></button>
+                    </div>
+                </div>
+            </ng-container>
+            
+        </div>
+    </div>
+
+    <div class="container" *ngIf="true">
+        <h3 class="title1">My Wishlist</h3>
+        <div class="productContainer">
+            <ng-container  *ngFor="let item of arr">
+                <div class="productBox">
+                    <!-- <img src="../../assets/images/flower.jpg" class="productImg" alt="product image"> -->
+                    <div class="imgBox">
+                        <img [src]="item" class="productImg" alt="product image" (click)="router.navigate(['/product/'+1])">
+                    </div>
+                    <div class="productDetails">
+                        <a [routerLink]="'/product/'+1" class="productName">Bonsai Plant (Red Leaves)</a>
+                        <a [routerLink]="'/categori/'+'bonsai'" class="productCategory">Bonsai</a>
+                        <div class="d-flex actionSec">
+                            <div class="leftSideBox">
+                                <p class="priceNow d-inline mb-0">₹ 120.00</p>
+                                <s class="priceBefore d-inline mb-0">₹ 150.00</s>
+                                <span class="tag">40% Off</span>
+                            </div>
+                            <!-- <button class="cartBtn"><i class="fa-solid fa-cart-plus"></i> Add To Cart</button> -->
+                        </div>
+                        <!-- <button class="heartBtn"><i class="fa-solid fa-heart"></i></button> -->
+                        <button class="deleteBtn" (click)="showSuccess()"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+            </ng-container>
+            
+        </div>
+    </div>
+</div>

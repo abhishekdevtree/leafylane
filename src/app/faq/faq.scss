@@ -1,0 +1,38 @@
+.leafy-title {
+  color: #3A9A43;
+}
+
+.leafy-accordion .accordion-item {
+  border: none;
+  border-radius: 12px;
+  background-color: #F6F6F6;
+  overflow: hidden;
+}
+
+.leafy-accordion .accordion-button {
+  background-color: transparent !important;
+  box-shadow: none;
+  color: #000 !important;
+  font-weight: 600;
+  padding: 1.2rem 1.5rem;
+  border-radius: 12px;
+}
+
+.leafy-accordion .accordion-button:not(.collapsed) {
+  background-color: #3A9A43;
+  color: #ffffff;
+}
+
+.leafy-accordion .accordion-button:focus {
+  box-shadow: none;
+}
+
+.leafy-accordion .accordion-body {
+  padding: 1rem 1.5rem 1.5rem;
+  color: #555;
+  line-height: 1.7;
+}
+
+.leafy-accordion i {
+  font-size: 1.1rem;
+}

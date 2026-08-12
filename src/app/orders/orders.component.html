@@ -1,0 +1,74 @@
+<div class="container">
+    <h3 class="title">My Orders</h3>
+    <div class="row" *ngIf="orders.length">
+        <div class="col-lg-12" *ngFor="let order of orders;let i = index">
+            <div class="orderBox border">
+                <div class="orderBoxTop">
+                    <span class="opt2 dBlock">In Transit</span>
+                    <div class="orderArrivalDetails flexBox1">
+                        <div class="leftBox1">
+                            <span class="idText d-block">Order ID</span>
+                            <span class="idNumber d-block">{{'ORD-'+createOrderIdFromTimestamp(order.createdAt)}}</span>
+                        </div>
+                        <div class="rightBox1">
+                            <span class="arriveAt dNone">In Transit</span>
+                            <span class="deliverAt border">Estimated Arrival :
+                                {{formatNext3Days(order.createdAt)}}</span>
+                        </div>
+                    </div>
+                    <div class="orderTrackDetails flexBox1">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <div class="location"> 
+                            {{ order.address.line1 }},
+                            {{ order.address.line2 }},
+                            {{ order.address.city }},
+                            {{ order.address.state }},
+                            {{ order.address.country }},
+                            {{ order.address.zip }}
+                        </div>
+                        <i class="fa-solid fa-house-chimney"></i>
+                    </div>
+                    <div class="orderedItems border">
+                        <div class="customBox">
+                            <div class="row g-2">
+                                <div class="col-md-12" *ngFor="let item of order.items; let i = index">
+                                    <div class="productDetails">
+
+                                        <!-- Product Link -->
+                                        <a [routerLink]="'/product/' + item._id">
+                                            <img [src]="item.productInfo?.images[0]?.regular" class="productImg"
+                                                alt="product image">
+                                        </a>
+
+                                        <div class="productBox">
+
+                                            <!-- Product Title -->
+                                            <a [routerLink]="'/product/' + item._id" class="productName">
+                                                {{ item.productInfo?.title }}
+                                            </a>
+
+
+                                            <!-- Qty × Price = Total -->
+                                            <p>
+                                                {{ item.qty }} items
+                                                <i class="fa-solid fa-x"></i>
+                                                ₹{{ item.price }}
+                                                = ₹{{ item.qty * item.price }}
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="orderBoxBottom">
+                    <p>Total Amount: <span>₹{{order.total}}</span></p>
+                    <a href="#">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

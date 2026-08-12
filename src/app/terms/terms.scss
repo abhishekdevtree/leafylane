@@ -1,0 +1,74 @@
+.terms-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f4faf6 0%, #ffffff 100%);
+
+  .terms-content {
+    padding: 1rem 0rem 2rem;
+  }
+
+  .brand-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #3A9A43;
+    letter-spacing: 0.5px;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #3A9A43;
+  }
+
+  .terms-section {
+    padding: 1.5rem 0;
+    border-bottom: 1px dashed #dbe9e2;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    h4 {
+      color: #3A9A43;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    p,
+    li {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    ul {
+      padding-left: 1.25rem;
+      margin-bottom: 0;
+    }
+  }
+
+  .contact {
+    background-color: #f0f7f3;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+  }
+
+  a {
+    color: #3A9A43;
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .terms-content {
+      padding: 2rem 1rem;
+    }
+
+    .brand-title {
+      font-size: 2rem;
+    }
+  }
+}

@@ -1,0 +1,201 @@
+.userAccountDetails{
+    padding: 1.2rem;
+}
+
+.userDetailsHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #d1d1d1;
+}
+
+.title1{
+    font-size: 21px;
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.deleteBtn{
+    border: none;
+    outline: none;
+    background: #BDBDBD;
+    height: 30px;
+    min-width: 9.3rem;
+    font-size: 14px;
+    color: black;
+    margin-right: 12px;
+    border-radius: 6px;
+    i{
+        font-size: 14px;
+        margin-right: 6px;
+    }
+}
+.deleteBtn2{
+    border: none;
+    outline: none;
+    background: #BDBDBD;
+    height: 30px;
+    min-width: 7rem;
+    font-size: 14px;
+    color: black;
+    margin-right: 12px;
+    border-radius: 6px;
+    i{
+        font-size: 14px;
+        margin-right: 6px;
+    }
+}
+
+.editBtn{
+    border: none;
+    outline: none;
+    background: #3A9A43;
+    height: 30px;
+    min-width: 7.5rem;
+    font-size: 14px;
+    color: #ffffff;
+    border-radius: 6px;
+    i{
+        font-size: 14px;
+        margin-right: 6px;
+    }
+}
+
+.userDetailsSection{
+    padding-top: 1rem;
+}
+
+.userBox{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.title2{
+    font-size: 16px;
+    color: #5f5f5f;
+    font-weight: 500;
+    min-width: 175px;
+    margin-right: 20px;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.userInfo{
+    font-size: 15px;
+    color: #b1b1b1;
+    font-weight: 400;
+    min-width: 100px;
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+.userBox input{
+    height: 39px;
+    font-size: 15px;
+    &:focus{
+        box-shadow: none;
+        border-color: #dee2e6;
+    }
+}
+
+.userBox textarea{
+    min-height: 9rem;
+    &:focus{
+        box-shadow: none;
+        border-color: #dee2e6;
+    }
+}
+
+.userBox select{
+    &:focus{
+        box-shadow: none;
+        border-color: #dee2e6;
+    }
+}
+
+.dp-container{
+    position: relative;
+}
+
+.dp-container span {
+    position: absolute;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 10%;
+    width: 90px;
+    height: 90px;
+    background: #00000017;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all ease 0.4s;
+    cursor: pointer;
+
+    &:hover{
+        opacity: 1;
+    }
+}
+ 
+img.profile-user-img {
+    height: 90px;
+    width: 90px;
+    border: 1px solid #d1d1d1;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 500px) {
+    .title1{
+        font-size: 15px;
+    }
+
+    .actionBtns{
+        display: flex;
+
+        button{
+            span{
+                display: none;
+            }
+        }
+    }
+
+    .deleteBtn{
+        font-size: 10px;
+        min-width: 2rem;
+        i{
+            font-size: 12px;
+            margin-right: 0;
+        }
+    }
+    .editBtn{
+        font-size: 10px;
+        min-width: 2rem;
+        i{
+            font-size: 12px;
+            margin-right: 0;
+        }
+    }
+    .deleteBtn2{
+        font-size: 10px;
+        min-width: 2rem;
+        i{
+            font-size: 12px;
+            margin-right: 0;
+        }
+    }
+
+    .userBox{
+        // flex-direction: column;
+        align-items: flex-start;
+        .title2{
+            min-width: 125px;
+        }
+    }
+
+    .userDetailsBody2 .userBox{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

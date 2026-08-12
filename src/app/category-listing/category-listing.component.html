@@ -1,0 +1,377 @@
+<div class="productsSec p-relative" *ngIf="products && products.length && !isLoading">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 dBlockWeb dNoneMobile">
+        <div class="leftFilterSec">
+          <div class="categories">
+            <h3>Categories</h3>
+            <ul>
+              <!-- MAIN CATEGORY -->
+              <li *ngFor="let cat of global.categories">
+
+                <a [routerLink]="'/category/' + cat._id" [ngClass]="{ 'active-link': targetCategoryId === cat._id }">
+                  {{ cat.title }}
+                </a>
+
+                <!-- SUBCATEGORIES -->
+                <ul class="sublinks" *ngIf="cat.children?.length">
+                  <li *ngFor="let sub of cat.children">
+
+                    <a [routerLink]="'/category/' + sub._id"
+                      [ngClass]="{ 'active-link': targetCategoryId === sub._id }">
+                      {{ sub.title }}
+                    </a>
+
+                    <!-- SUB–SUB CATEGORIES -->
+                    <ul class="sublinks" *ngIf="sub.children?.length">
+                      <li *ngFor="let subsub of sub.children">
+                        <a [routerLink]="'/category/' + subsub._id"
+                          [ngClass]="{ 'active-link': targetCategoryId === subsub._id }">
+                          {{ subsub.title }}
+                        </a>
+                      </li>
+                    </ul>
+
+                  </li>
+                </ul>
+
+              </li>
+
+            </ul>
+          </div>
+          <div class="filter customFilter border-top">
+            <h3>Filter By Price</h3>
+            <div class="range-input">
+              <input type="range" class="price-range" min="0" max="10000" value="10000" step="100">
+            </div>
+            <div class="f-price-input-wrapper mt-3">
+              <input type="text" value="0" class="price-input">
+              <input type="text" value="10000" class="price-input">
+            </div>
+          </div>
+          <div class="filter customFilter border-top">
+            <h3>Rating</h3>
+            <div class="filter-body">
+              <div class="filter-check-container full-height mb-0">
+                <label class="fb-radio-container">
+                  <p class="my-0 pt-0 star-rating">
+                    <i class="fas fa-star fill"></i>
+                    <i class="fas fa-star fill"></i>
+                    <i class="fas fa-star fill"></i>
+                    <i class="fas fa-star fill"></i>
+                    <i class="fas fa-star fill mr-2"></i>
+                    &nbsp;
+                  </p>
+                  <!-- <a>(500)</a> -->
+                  <input type="radio" name="radio">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="fb-radio-container">
+                  <p class="my-0 pt-0 star-rating">
+                    <i class="fas fa-star fill"></i>
+                    <i class="fas fa-star fill"></i>
+                    <i class="fas fa-star fill"></i>
+                    <i class="fas fa-star fill"></i>
+                    <i class="fas fa-star empty mr-2"></i>
+                    <!-- & up -->
+                  </p>
+                  <!-- <a>(06)</a> -->
+                  <input type="radio" name="radio">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="fb-radio-container">
+                  <p class="my-0 pt-0 star-rating">
+                    <i class="fas fa-star fill"></i>
+                    <i class="fas fa-star fill"></i>
+                    <i class="fas fa-star fill"></i>
+                    <i class="fas fa-star empty"></i>
+                    <i class="fas fa-star empty mr-2"></i>
+                    <!-- & up -->
+                  </p>
+                  <!-- <a>(06)</a> -->
+                  <input type="radio" name="radio">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="fb-radio-container">
+                  <p class="my-0 pt-0 star-rating">
+                    <i class="fas fa-star fill"></i>
+                    <i class="fas fa-star fill"></i>
+                    <i class="fas fa-star empty"></i>
+                    <i class="fas fa-star empty"></i>
+                    <i class="fas fa-star empty mr-2"></i>
+                    <!-- & up -->
+                  </p>
+                  <!-- <a>(06)</a> -->
+                  <input type="radio" name="radio">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="fb-radio-container">
+                  <p class="my-0 pt-0 star-rating">
+                    <i class="fas fa-star fill"></i>
+                    <i class="fas fa-star empty"></i>
+                    <i class="fas fa-star empty"></i>
+                    <i class="fas fa-star empty"></i>
+                    <i class="fas fa-star empty mr-2"></i>
+                    <!-- & up -->
+                  </p>
+                  <!-- <a>(06)</a> -->
+                  <input type="radio" name="radio">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="selectColor border-top customFilter">
+            <h3>Select By Color</h3>
+            <div class="colorSec row">
+              <div class="col-md-12 col-lg- 6 marginBottom3">
+                <div class="form-check">
+                  <input class="form-check-input checkBox" type="checkbox" id="Black" value="option1">
+                  <label class="form-check-label" for="Black">Black (5)</label>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg- 6 marginBottom3">
+                <div class="form-check">
+                  <input class="form-check-input checkBox" type="checkbox" id="Blue" value="option2">
+                  <label class="form-check-label" for="Blue">Blue (6)</label>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg- 6 marginBottom3">
+                <div class="form-check">
+                  <input class="form-check-input checkBox" type="checkbox" id="Brown" value="option1">
+                  <label class="form-check-label" for="Brown">Brown (3)</label>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg- 6 marginBottom3">
+                <div class="form-check">
+                  <input class="form-check-input checkBox" type="checkbox" id="Green" value="option2">
+                  <label class="form-check-label" for="Green">Green (7)</label>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg- 6 marginBottom3">
+                <div class="form-check">
+                  <input class="form-check-input checkBox" type="checkbox" id="Pink" value="option1">
+                  <label class="form-check-label" for="Pink">Pink (8)</label>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg- 6 marginBottom3">
+                <div class="form-check">
+                  <input class="form-check-input checkBox" type="checkbox" id="Red" value="option2">
+                  <label class="form-check-label" for="Red">Red (3)</label>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg- 6 marginBottom3">
+                <div class="form-check">
+                  <input class="form-check-input checkBox" type="checkbox" id="White" value="option1">
+                  <label class="form-check-label" for="White">White (5)</label>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg- 6 marginBottom3">
+                <div class="form-check">
+                  <input class="form-check-input checkBox" type="checkbox" id="Yellow" value="option2">
+                  <label class="form-check-label" for="Yellow">Yellow (6)</label>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+        <div class="bannerSec">
+          <img src="../../assets/images/bannerProduct.jpg" alt="banner images">
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-12">
+        <div class="mainBanner" [ngStyle]="{ 'background-image': bannerImage }"
+          [innerHTML]="getFormattedHeading(activeCategory?.longDescription)">
+        </div>
+        <div class="filterSec border w-100 mb-4">
+          <div class="row align-items-center">
+            <div class="col-6">
+              <div class="buttons">
+                <!-- <button class="filterbtn dNoneWeb dNoneMobile" [class.filterBtnActive]="filterMenu" (click)="showFilters()"  title="Filter"><i class="fa-solid fa-filter"></i></button> -->
+                <button class="filterbtn" [class.active]="productListOne" (click)="showListOne()"><i
+                    class="fa-solid fa-grid-round"></i></button>
+                <button class="filterbtn" [class.active]="productListThree" (click)="showListThree()"><i
+                    class="fa-regular fa-bars"></i></button>
+                <p class="d-inline customPages dNoneMobile">Showing 1 to 9 of 15 (2 pages)</p>
+              </div>
+            </div>
+            <div class="col-6 textRight">
+              <div class="options d-flex justify-content-between dNoneMobile">
+                <div class="option1">
+                  <label for="items">Show:</label>
+                  <select name="items" id="items">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                  </select>
+                </div>
+                <div class="option2">
+                  <label for="sort">Sort By:</label>
+                  <select name="sort" id="sort">
+                    <option value="default">Default</option>
+                    <option value="date">Date For New Option</option>
+                  </select>
+                </div>
+              </div>
+              <button class="filterBtnMob dNoneWeb dBlockMobile" [class.filterBtnActive]="filterMenu"
+                (click)="showFilters()" title="Filter">Filter <i class="fa-solid fa-filter"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="row g-3 g-lg-4 products" *ngIf="productListOne">
+          <div class="col-lg-4 col-md-6" *ngFor="let item of products,let i = index">
+            <div class="productLink" (click)="router.navigate(['/product/'+item._id])">
+              <div class="card cardSecond" [class.not-avilable]="!item.in_stock"
+                (click)="router.navigate(['/product/' + item._id])">
+                <div class="img-container position-relative">
+                  <img [src]="item.images.length ? item.images[0].regular : 'assets/images/pot1.png'"
+                    class="card-img-top" alt="pot images" />
+                  @if (!item.in_stock) {
+                  <p class="out-stock">Out of stock</p>
+                  }
+                </div>
+
+                <div class="card-body">
+                  <p class="card-text">{{ item.title }}</p>
+
+                  <div class="d-flex justify-content-between">
+                    <div class="stars">
+                      <i class="las la-star" [class.star-rating]="rating >= 1"></i>
+                      <i class="las la-star" [class.star-rating]="rating >= 2"></i>
+                      <i class="las la-star" [class.star-rating]="rating >= 3"></i>
+                      <i class="las la-star" [class.star-rating]="rating >= 4"></i>
+                      <i class="las la-star" [class.star-rating]="rating == 5"></i>
+                    </div>
+
+                    <button class="addCart" (click)="$event.stopPropagation();addToCart(item)"
+                      [class.inCart]="userService.cart?.items && (userService.cart.items | filterBy: { product: item['_id'] }).length"
+                      [disabled]="!item.in_stock"><i class="las la-shopping-cart"></i></button>
+                  </div>
+                  <p class="priceNow">₹{{item.final_price}}</p>
+                  <s class="priceBefore">₹{{item.base_price}}</s>
+                  <span class="discountTag">-{{item.disount_percent}}%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row productsThree" *ngIf="productListThree">
+          <div class="col-lg-12 mb-4" *ngFor="let item of products,let i = index">
+            <div class="card cardSecond" (click)="router.navigate(['/product/'+item._id])"
+              [class.not-avilable]="!item.in_stock">
+              <div class="img-container  position-relative">
+                <!-- <img src="../../assets/images/pot1.png" class="card-img-top" alt="pot images"> -->
+                <img [src]="item.images[0].regular" class="card-img-top" alt="pot images" *ngIf="item.images.length">
+                <img src="../../assets/images/pot1.png" class="card-img-top" alt="pot images"
+                  *ngIf="!item.images.length">
+                @if (!item.in_stock) {
+                <p class="out-stock">Out of stock</p>
+                }
+              </div>
+              <div class="card-body">
+                <p class="card-text" [innerHTML]="item.title"></p>
+                <p class="cardDescription" [innerHTML]="item.description"></p>
+                <div class="stars">
+                  <i class="las la-star" [class.star-rating]="rating >= 1"></i>
+                  <i class="las la-star" [class.star-rating]="rating >= 2"></i>
+                  <i class="las la-star" [class.star-rating]="rating >= 3"></i>
+                  <i class="las la-star" [class.star-rating]="rating >= 4"></i>
+                  <i class="las la-star" [class.star-rating]="rating == 5"></i>
+                </div>
+                <p class="priceNow">₹{{item.final_price}}</p>
+                <s class="priceBefore">₹{{item.base_price}}</s>
+                <span class="discountTag">-{{item.disount_percent}}%</span>
+                <button class="addCart d-inline" (click)="$event.stopPropagation();addToCart(item)"
+                  [class.inCart]="(userService.cart?.items && (userService.cart?.items | filterBy: { product: item['_id'] }).length)"
+                  [disabled]="!item.in_stock"><span
+                    *ngIf="!(userService.cart?.items && (userService.cart?.items | filterBy: { product: item['_id'] }).length)">Add
+                    to
+                    cart</span> <span
+                    *ngIf="(userService.cart?.items && (userService.cart?.items | filterBy: { product: item['_id'] }).length)">In
+                    cart</span><i class="las la-shopping-cart"></i></button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="pagination border customMargin">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="pages">
+              <ng-container *ngFor='let in of pages(totalPages) ;let i = index'>
+                <button [class.active]="pageNumber == i" (click)="changePage(i)">{{i+1}}</button>
+              </ng-container>
+              <button><i class="las la-angle-right"></i></button>
+              <button><i class="las la-step-forward"></i></button>
+            </div>
+            <p class="mb-0 customPages">Showing 1 to 9 of {{products.length}} ({{totalPages}} pages)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="responsiveFilterSec" [class.toggle]="filterMenu">
+    <div class="responsiveFilter">
+      <button class="CloseBtn" (click)="showFilters()"><i class="fa-sharp fa-regular fa-xmark"></i></button>
+      <div class="categories">
+        <h3>Categories</h3>
+        <!-- MAIN CATEGORY -->
+        <li *ngFor="let cat of global.categories">
+
+          <a [routerLink]="['/category', cat._id]">
+            {{ cat.title }}
+          </a>
+
+          <!-- SUBCATEGORIES -->
+          <ul class="sublinks" *ngIf="cat.children?.length">
+
+            <li *ngFor="let sub of cat.children">
+
+              <a [routerLink]="['/category', sub._id]">
+                {{ sub.title }}
+              </a>
+
+              <!-- SUB–SUB CATEGORIES -->
+              <ul class="sublinks" *ngIf="sub.children?.length">
+
+                <li *ngFor="let subsub of sub.children">
+
+                  <a [routerLink]="['/category', subsub._id]">
+                    {{ subsub.title }}
+                  </a>
+
+                </li>
+
+              </ul>
+
+            </li>
+
+          </ul>
+
+        </li>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="!(products && products.length) && !isLoading">
+  <div class="col-lg-12 col-md-12">
+    <div class="empty-portion">
+      <img src="../../assets/images/happy.png" alt="happy image">
+      <p class="title">Oops! Something is wrong.</p>
+      <p class="msg">We tried really hard but we could not find any product.</p>
+      <button (click)="router.navigate([''])">Go back home</button>
+    </div>
+  </div>
+</ng-container>
+
+<div class="loader" *ngIf="!products.length && isLoading"></div>

@@ -1,0 +1,33 @@
+<div class="addressSec">
+    <div class="container">
+        <div class="d-flex justify-content-between topTitleBox">
+            <h3 class="title">Address</h3>
+            <button class="addNew">Add New Address</button>
+        </div>
+
+        <div class="addressBox" *ngFor="let address of auth.user.addresses;let i = index">
+            <div class="topBox">
+                <div class="addressLeftSideBox">
+                    <p class="name">{{auth.user.name}} <span>{{address.label}}</span></p>
+                </div>
+                <div class="addressRightSideBox">
+                    <button class="dBlock checkedBtn" *ngIf="selectedAddressIndex == i"><i
+                            class="fa-duotone fa-circle-check"></i> Shipping Address</button>
+                    <button class="uncheckedBtn dBlock" *ngIf="!(selectedAddressIndex == i)" (click)="changeDefaultAddress(address)">Set as Shipping</button>
+                    <div class="dropstart">
+                        <button type="button" class="modalBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <button class="editBtn">Edit</button>
+                            <button class="deleteBtn">Delete</button>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <p class="address">{{address.line1+', '+address.line2}}</p>
+            <p class="address">{{address.city+', '+address.state+', '+address.zip}}</p>
+            <p class="address">Mobile: {{address.phone}}</p>
+        </div>
+    </div>
+</div>

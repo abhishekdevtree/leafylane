@@ -1,0 +1,262 @@
+<div class="cartPage">
+    <div class="container">
+        <div class="d-flex flexColumn">
+            <div class="leftSideBox">
+                <div class="position flexBox3">
+                    <div class="boxPosition">
+                        <p class="number">1</p>
+                        <p class="step">Cart</p>
+                    </div>
+                    <div class="boxPosition2">
+                        <p class="number">2</p>
+                        <p class="step">Address</p>
+                    </div>
+                    <div class="boxPosition3">
+                        <p class="numberPending">3</p>
+                        <p class="step">Payment</p>
+                    </div>
+                </div>
+
+                <ng-container *ngIf="!(auth.user && auth.user.role == 'customer'); else selectAddressDiv">
+                    <div class="leftContainer flexBox1 mbOne">
+                        <h3 class="titleText">Contact</h3>
+                        <h3 class="titleText">Have an account ? <a type="button" data-bs-toggle="modal"
+                                data-bs-target="#login">Log In</a></h3>
+                    </div>
+
+                    <div class="formGroup mbOne">
+
+                        <input type="text" class="form-control" placeholder="Name" aria-label="name"
+                            [(ngModel)]="user.name">
+
+                        <input class="form-control" [class.borderRed]="errorUserExists" type="email"
+                            placeholder="Email Address" [(ngModel)]="user.email" />
+
+                        <span class="warning-text" *ngIf="errorUserExists">
+                            Email Id already registered, please use another one.
+                        </span>
+
+                        <input class="form-control" type="number" placeholder="Mobile Number"
+                            [(ngModel)]="user.mobile" />
+
+                        <input class="form-control" type="password" placeholder="Password"
+                            [(ngModel)]="user.password" />
+
+                        <input type="text" class="form-control" placeholder="Address Line 1"
+                            [(ngModel)]="user.address1">
+
+                        <input type="text" class="form-control" placeholder="Address Line 2"
+                            [(ngModel)]="user.address2">
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <select class="form-select" [(ngModel)]="user.state" [class.customPlaceholder]="!user.state">
+                                    <option value="">Select State</option>
+
+                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                    <option value="Assam">Assam</option>
+                                    <option value="Bihar">Bihar</option>
+                                    <option value="Chhattisgarh">Chhattisgarh</option>
+                                    <option value="Goa">Goa</option>
+                                    <option value="Gujarat">Gujarat</option>
+                                    <option value="Haryana">Haryana</option>
+                                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                    <option value="Jharkhand">Jharkhand</option>
+                                    <option value="Karnataka">Karnataka</option>
+                                    <option value="Kerala">Kerala</option>
+                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                    <option value="Maharashtra">Maharashtra</option>
+                                    <option value="Manipur">Manipur</option>
+                                    <option value="Meghalaya">Meghalaya</option>
+                                    <option value="Mizoram">Mizoram</option>
+                                    <option value="Nagaland">Nagaland</option>
+                                    <option value="Odisha">Odisha</option>
+                                    <option value="Punjab">Punjab</option>
+                                    <option value="Rajasthan">Rajasthan</option>
+                                    <option value="Sikkim">Sikkim</option>
+                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                    <option value="Telangana">Telangana</option>
+                                    <option value="Tripura">Tripura</option>
+                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                    <option value="Uttarakhand">Uttarakhand</option>
+                                    <option value="West Bengal">West Bengal</option>
+
+                                    <option value="Delhi">Delhi</option>
+                                </select>
+
+
+                            </div>
+
+                            <div class="col-md-6 mtCustom">
+                                <input type="text" class="form-control" placeholder="City" aria-label="City"
+                                    [(ngModel)]="user.city" />
+                            </div>
+                        </div>
+
+                        <input type="number" placeholder="Pincode" class="form-control" [(ngModel)]="user.pincode">
+
+                    </div>
+                </ng-container>
+
+                <ng-template #selectAddressDiv>
+                    <div class="mbOne userDetails" *ngFor="let item of auth.user.addresses;let i = index">
+                        <div class="transactionOptions flexBox1 flexColumn2">
+                            <div class="method">
+                                <ng-container>
+                                    <label class="radioBtn" (click)="selectedAddressIndex = i">
+                                        <div class="label-Address">
+                                            <p>{{item.label}}</p>
+                                            <p>{{item.line1+', '+item.line2}}</p>
+                                            <p>{{item.city+', '+item.state+', '+item.zip}}</p>
+                                            <p>Mobile: {{item.phone}}</p>
+                                        </div>
+                                        <input type="radio" [checked]="selectedAddressIndex == i" name="radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </ng-container>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="mbOne userDetails formGroup">
+                        <label class="radioBtn label-Address" (click)="selectedAddressIndex = auth.user.addresses.length">
+                            <p>Add New Address</p>
+                            <input type="radio" [checked]="selectedAddressIndex == auth.user.addresses.length"
+                                name="radio">
+                            <span class="checkmark"></span>
+                        </label>
+
+                        <div class="mt-4" *ngIf="selectedAddressIndex == auth.user.addresses.length">
+                            <input class="form-control" type="number" placeholder="Mobile Number"
+                                [(ngModel)]="user.mobile" />
+
+                            <input type="text" class="form-control" placeholder="Address Line 1"
+                                [(ngModel)]="user.address1">
+
+                            <input type="text" class="form-control" placeholder="Address Line 2"
+                                [(ngModel)]="user.address2">
+
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <select class="form-select" [(ngModel)]="user.state"
+                                        [class.customPlaceholder]="!user.state">
+                                        <option value="">Select State</option>
+
+                                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                        <option value="Assam">Assam</option>
+                                        <option value="Bihar">Bihar</option>
+                                        <option value="Chhattisgarh">Chhattisgarh</option>
+                                        <option value="Goa">Goa</option>
+                                        <option value="Gujarat">Gujarat</option>
+                                        <option value="Haryana">Haryana</option>
+                                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                        <option value="Jharkhand">Jharkhand</option>
+                                        <option value="Karnataka">Karnataka</option>
+                                        <option value="Kerala">Kerala</option>
+                                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                        <option value="Maharashtra">Maharashtra</option>
+                                        <option value="Manipur">Manipur</option>
+                                        <option value="Meghalaya">Meghalaya</option>
+                                        <option value="Mizoram">Mizoram</option>
+                                        <option value="Nagaland">Nagaland</option>
+                                        <option value="Odisha">Odisha</option>
+                                        <option value="Punjab">Punjab</option>
+                                        <option value="Rajasthan">Rajasthan</option>
+                                        <option value="Sikkim">Sikkim</option>
+                                        <option value="Tamil Nadu">Tamil Nadu</option>
+                                        <option value="Telangana">Telangana</option>
+                                        <option value="Tripura">Tripura</option>
+                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                        <option value="Uttarakhand">Uttarakhand</option>
+                                        <option value="West Bengal">West Bengal</option>
+
+                                        <option value="Delhi">Delhi</option>
+                                    </select>
+
+                                </div>
+
+                                <div class="col-md-6 mtCustom">
+                                    <input type="text" class="form-control" placeholder="City" aria-label="City"
+                                        [(ngModel)]="user.city" />
+                                </div>
+                            </div>
+
+                            <input type="number" placeholder="Pincode" class="form-control" [(ngModel)]="user.pincode">
+
+                        </div>
+                    </div>
+                </ng-template>
+
+
+
+
+                <div class="flexBox1 dNoneMobile">
+                    <div class="navigationButton">
+                        <a routerLink="/cart"><i class="fa-solid fa-arrow-left-long"></i> Return To Cart</a>
+                    </div>
+                    <div class="paymentBtn">
+                        <a (click)="proceedToPayment()">Continue To Payment</a>
+                    </div>
+                </div>
+            </div>
+            <div class="rightSideBox">
+                <div class="orderDetailsBox">
+                    <div class="orderDetailsTop">
+                        <div class="rightContainer borderBottom pb33">
+                            <h3 class="titleText2">Order Details</h3>
+                        </div>
+                        <div class="flexBox1 mt2" *ngFor="let item of userService.cart.items; let id = index">
+                            <div class="leftSideSec">
+                                <div class="d-flex gap21 align-items-center">
+                                    <a [routerLink]="'/product/' + item.productInfo._id">
+                                        <img [src]="item.productInfo?.images[0]?.regular" class="productImage"
+                                            alt="product image" />
+                                    </a>
+                                    <div class="productDetails">
+                                        <a [routerLink]="'/product/' + item.productInfo._id">
+                                            <h3 class="productName">{{item.productInfo.title}}</h3>
+                                        </a>
+                                        <a routerLink="/tags">
+                                            <p class="category">{{item.productInfo.categoryInfo.title}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rightSideSec">
+                                <span> x{{item.qty}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="orderDeatilsBottom">
+                        <div class="flexBox1">
+                            <p class="bottomText">Total Items ({{userService.cart.items.length}})</p>
+                            <p class="bottomText">₹{{userService.cart.final_cart_value}}</p>
+                        </div>
+                        <div class="flexBox1">
+                            <p class="bottomText">Delivery Charges</p>
+                            <p class="bottomText colorGreen">₹{{globals.deliveryCharges}}</p>
+                        </div>
+                        <div class="flexBox1 borderBottom borderTop pTwo mb-0">
+                            <p class="bottomText colorTwo">AMOUNT PAYABLE</p>
+                            <p class="bottomText colorTwo">₹{{userService.cart.final_cart_value +
+                                globals.deliveryCharges}}</p>
+                        </div>
+                    </div>
+                    <div class="dBlock">
+                        <div class="flexBox1 mobileBtn">
+                            <div class="navigationButton">
+                                <a routerLink="/cart"><i class="fa-solid fa-arrow-left-long"></i> Return To Cart</a>
+                            </div>
+                            <div class="paymentBtn">
+                                <a (click)="proceedToPayment()">Continue To Payment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

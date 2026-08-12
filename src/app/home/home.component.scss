@@ -1,0 +1,795 @@
+.home {
+  background-color: white;
+}
+
+.cardSec {
+  background-color: #e6e5e3;
+  background-image: url("./../../../public/assets/images/card3.jpg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 17rem;
+}
+
+.customCard1 {
+  padding-right: 5px !important;
+}
+
+.customCard2 {
+  padding-left: 5px !important;
+}
+
+
+
+.mainHeading {
+  font-size: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.mainHeading::after {
+  content: "";
+  position: absolute;
+  width: 4rem;
+  height: 2px;
+  background-color: #3A9A43;
+  bottom: -6px;
+  left: 0px;
+}
+
+.timingCounter {
+  background-color: #3A9A43;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 7px 23px;
+  font-weight: 600;
+  border-radius: 5px;
+  margin-right: 2rem;
+}
+
+.timingCounter span {
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+.sliderBtn {
+  background-color: #ededed;
+  color: grey;
+  border: none;
+  outline: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+}
+
+.marginRight {
+  margin-right: .3rem;
+}
+
+.dealsHead {
+  margin-bottom: 1.2rem !important;
+}
+
+.card {
+  width: 100% !important;
+  border: 1px solid #d1d1d14d;
+  background-color: #f6f6f6;
+  outline: none;
+  position: relative;
+  border-radius: 0 !important;
+}
+
+.cardSecond {
+  width: 12.5rem !important;
+}
+
+.card-body {
+  background-color: #fff;
+}
+
+.card-img-top {
+  width: 75%;
+  object-fit: contain;
+  height: 14rem;
+  display: block;
+  margin: auto;
+  border-radius: 0 !important;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+.newProduct .card-img-top {
+  width: 100%;
+  object-fit: cover;
+  height: 15rem !important;
+  display: block;
+  margin: auto;
+  border-radius: 0 !important;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+.todayDeals .card-img-top {
+  width: 100%;
+  object-fit: cover;
+  height: 17rem !important;
+  display: block;
+  margin: auto;
+  border-radius: 0 !important;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.priceTag p {
+  margin-bottom: 4px;
+  color: grey;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.progress {
+  height: 10px;
+  margin-bottom: .9rem;
+}
+
+.progressBarHeight {
+  height: 12px;
+  background-color: #FFDE21;
+}
+
+.card-text {
+  color: grey;
+  font-weight: 300;
+  margin-bottom: .3rem;
+  font-size: 15.8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /* show only 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 
+.la-star {
+  color: #FFDE21;
+} */
+
+.addCart {
+  border: none;
+  outline: none;
+  font-size: 1.3rem;
+  border-radius: 50%;
+  padding: 4px 9px;
+  color: #3A9A43;
+}
+
+.priceNow {
+  display: inline-block;
+  margin-right: .9rem;
+  color: #3A9A43;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.priceBefore {
+  color: grey;
+  font-size: 13px;
+}
+
+.discountTag {
+  background-color: #3A9A43;
+  color: white;
+  padding: 5px 9px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+.blog-img {
+  object-fit: cover !important;
+  width: 100%;
+  height: 15rem !important;
+}
+
+.bannerImg {
+  width: 100%;
+  height: 47.6rem;
+  object-fit: cover;
+}
+
+.cardSecond img {
+  width: 100%;
+  object-fit: cover;
+  height: 12rem;
+  display: block;
+  margin: auto;
+  border-radius: 0 !important;
+}
+
+.cardSecond .card-text {
+  margin-bottom: 0;
+}
+
+.bannerText span {
+  color: #3A9A43;
+  font-size: 17px;
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.bannerText h3 {
+  font-size: 33px;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 0px;
+}
+
+.bannerText h1 {
+  text-transform: uppercase;
+  font-size: 3.7rem;
+}
+
+.bannerText p {
+  color: grey;
+  font-weight: 300;
+  font-size: 14px;
+  width: 95%;
+  margin-bottom: 2.4rem;
+}
+
+.buttons {
+  text-align: end;
+}
+
+.bannerText a {
+  border: 1.5px solid #3A9A43;
+  color: #3A9A43;
+  background-color: transparent;
+  padding: 14px 19px;
+  font-size: 15px;
+  outline: none;
+  border-radius: 5px;
+  text-transform: capitalize;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all .4s ease;
+}
+
+.bannerText a:hover {
+  background-color: #3A9A43;
+  color: white;
+}
+
+.bannerImageSec img {
+  width: 100%;
+}
+
+.bannerSection {
+  margin-bottom: 3rem;
+}
+
+.gapCustom {
+  grid-gap: 1rem !important;
+  gap: 15px !important;
+}
+
+.serviceImg {
+  width: 65px;
+  object-fit: contain;
+  height: 55px;
+  position: relative;
+  z-index: 1;
+}
+
+.serviceText p {
+  margin-bottom: 0;
+  font-size: 15px;
+  color: #3A9A43;
+  font-weight: 500;
+}
+
+.serviceText span {
+  font-size: 13px;
+  position: relative;
+  bottom: 5px;
+  color: grey;
+}
+
+.serviceBox {
+  position: relative;
+}
+
+.serviceBox::before {
+  content: "";
+  position: absolute;
+  width: 33px;
+  height: 33px;
+  background-color: #FFDE21;
+  top: 3px;
+  left: 5px;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.serviceContainer {
+  padding-block: 1.8rem;
+}
+
+.blogCard {
+  width: 23rem !important;
+}
+
+.blogText {
+  font-weight: 500;
+  color: #2e2e2e;
+  font-size: 15px;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /* show only 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.blogDate {
+  font-size: 14px;
+  font-weight: 500;
+  color: #3A9A43;
+  margin-bottom: 4px;
+}
+
+.customLinkBox {
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
+.featuredImg {
+  width: 100%;
+  height: 16rem;
+  -o-object-fit: contain;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+  transition: all .3s ease;
+  margin-bottom: 2rem;
+}
+
+.featuredImg:hover {
+  transform: scale(1.05);
+}
+
+.featuredTitle {
+  text-align: center;
+  text-align: center;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.1rem;
+  line-height: 25px;
+}
+
+.totalProducts {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.featuredBox {
+  padding: 27px 15px;
+}
+
+.featuredBox1 {
+  background-color: #F5EAD8;
+}
+
+.featuredBox2 {
+  background-color: #F6E9E3;
+}
+
+.featuredBox3 {
+  background-color: #F4F3DE;
+}
+
+.featuredBox4 {
+  background-color: #F0F7E7;
+}
+
+.mainBanner {
+  background-color: #F0F2FE;
+  padding: 12px 57px;
+  position: relative;
+}
+
+.mainBanner::after {
+  content: "";
+  width: 24rem;
+  height: 24rem;
+  background-color: #E1E3F8;
+  border-radius: 50%;
+  position: absolute;
+  top: 1rem;
+  right: 51px;
+
+}
+
+.mainBannerText p {
+  text-transform: capitalize;
+  color: grey;
+  font-size: 22px;
+  margin-bottom: 0rem;
+}
+
+.mainBannerText h1 {
+  font-weight: 600;
+  text-transform: capitalize;
+  font-size: 3.1rem;
+  margin-bottom: 0;
+}
+
+.mainBannerText h2 {
+  color: #37383C;
+  font-size: 3.3rem;
+  font-weight: 400;
+  text-transform: capitalize;
+  margin-bottom: 1.6rem;
+}
+
+.mainBannerText a {
+  background-color: #3A9A43;
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.mainBannerTextLink {
+  background-color: #3A9A43;
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  position: relative;
+  bottom: 6rem;
+  z-index: 3;
+  left: 3rem;
+}
+
+.mainBannerImg {
+  /* height: 28rem; */
+  object-fit: contain;
+  width: 100%;
+  z-index: 1;
+  position: relative;
+}
+
+.carousel-indicators {
+  background-color: #FFFFFF;
+  width: fit-content;
+  margin: auto;
+  padding: 6px 8px;
+  border-radius: 12px;
+  gap: 3px;
+  bottom: 39px;
+}
+
+.carousel-indicators button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #D8D8D8;
+  border-top: none;
+  border-bottom: none;
+}
+
+.carousel-indicators button.active {
+  background-color: #3A9A43;
+}
+
+.arrivalsBox1 {
+  background-color: #F6EDEE;
+}
+
+.arrivalsBox2 {
+  background-color: #F0F0F0;
+}
+
+.paddingRight {
+  padding-right: .35rem !important;
+}
+
+.paddingLeft {
+  padding-left: .35rem !important;
+}
+
+.arrivalsBox {
+  padding: 7px 10px 7px 3rem;
+}
+
+.arrivalText {
+  color: #4e4e4e;
+  font-weight: 300;
+  font-size: 19px;
+  margin-bottom: 0;
+  text-transform: capitalize;
+  line-height: 18px;
+}
+
+.arrivalHeading {
+  font-weight: 500;
+  font-size: 26px;
+  margin-bottom: 9px;
+  text-transform: capitalize;
+  line-height: 1.2;
+  margin-top: 12px;
+}
+
+.arrivalPrice {
+  color: #3A9A43;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.arrivalImg img {
+  width: 100%;
+  height: 15rem;
+}
+
+.margintop {
+  margin-top: 39px;
+}
+
+@media screen and (max-width:840px) {
+  .mainBanner::after {
+    content: "";
+    width: 18rem;
+    height: 18rem;
+    background-color: #E1E3F8;
+    border-radius: 50%;
+    position: absolute;
+    top: 3rem;
+    right: 21px;
+  }
+
+
+  .featuredBox2 {
+    background-color: #F6E9E3;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .featuredBox1 {
+    margin-bottom: 20px;
+  }
+
+  .mb18 {
+    margin-bottom: 18px;
+  }
+
+  .arrivalImg img {
+    height: 12.4rem;
+    object-fit: cover;
+  }
+
+  .topCarousel {
+    margin-bottom: 1.5rem;
+    padding: 0 !important;
+  }
+
+  .card-img-top {
+    width: 100%;
+    object-fit: contain;
+    height: 15rem;
+  }
+
+
+
+  .flexReverse {
+    flex-direction: column-reverse;
+  }
+
+  .timingCounter {
+    margin-right: 1rem;
+  }
+
+}
+
+.topCarousel {
+  padding: 0 !important;
+}
+
+.dNoneWeb {
+  display: none;
+}
+
+.dInlineBlockWeb {
+  display: inline;
+}
+
+@media screen and (max-width:500px) {
+  /* .mainBanner{
+    padding: 16px 18px;
+    flex-direction: column-reverse;
+  } */
+
+
+
+  .mainBannerImg {
+    /* height: 18rem;
+    width: 63%; */
+    margin-top: 30px !important;
+  }
+
+  .mainBanner::after {
+    width: 12rem;
+    height: 12rem;
+    top: 2rem;
+    right: 73px;
+  }
+
+  .mainBannerText {
+    margin-bottom: 2rem;
+  }
+
+  .margintop {
+    margin-top: 12px;
+  }
+
+  .bannerImg {
+    height: 33rem;
+  }
+
+  .card-body {
+    padding: 10px;
+  }
+
+  .dNoneWeb {
+    display: block;
+  }
+
+  .dInlineBlockWeb {
+    display: none;
+  }
+
+  .serviceBox::before {
+    left: 4rem;
+  }
+
+  .serviceBox {
+    flex-direction: column;
+  }
+
+  .serviceContainer {
+    padding-block: 1.2rem;
+  }
+
+  .serviceText {
+    text-align: center;
+    font-size: 12px !important;
+  }
+
+  .featuredBox1,
+  .featuredBox2 {
+    margin-bottom: 0;
+  }
+
+  .featuredImg {
+    width: 100%;
+    height: 12rem;
+  }
+
+  .featuredTitle {
+    font-size: .9rem;
+  }
+
+  .todayDeals .card-img-top:hover,
+  .newProduct .card-img-top:hover {
+    transform: scale(1);
+  }
+
+  .arrivalsBox {
+    padding: 7px 10px 7px 1rem;
+  }
+
+  .arrivalText {
+    color: #4e4e4e;
+    font-weight: 300;
+    font-size: 16px;
+    margin-bottom: 0;
+    text-transform: capitalize;
+    line-height: 18px;
+  }
+
+  .arrivalHeading {
+    font-weight: 500;
+    font-size: 19px;
+    margin-bottom: 9px;
+    text-transform: capitalize;
+  }
+
+  .arrivalPrice {
+    color: #3A9A43;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  .mainHeading {
+    font-size: 1rem;
+  }
+
+  .bannerText h3 {
+    font-size: 23px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 0px;
+  }
+
+  .bannerText h1 {
+    text-transform: uppercase;
+    font-size: 1.7rem;
+  }
+}
+
+.timingCounterMob {
+  margin-bottom: 18px;
+}
+
+
+.border,
+.border-top,
+.border-bottom {
+  border-color: #d1d1d14d !important;
+}
+
+.todayDeals .card-img-top:hover,
+.newProduct .card-img-top:hover {
+  transform: scale(1.07);
+}
+
+
+/* .menuActive{
+  position: fixed;
+} */
+
+@media screen and (max-width:770px) {
+  .mainBanner {
+    padding: 16px 18px;
+    flex-direction: column-reverse;
+  }
+}
+
+@media screen and (max-width:1000px) {
+  .carousel-indicators {
+    bottom: 1px;
+  }
+}
+
+.la-star {
+  color: #646464;
+}
+
+.star-rating {
+  color: #F9DD54;
+}
+
+
+.inCart {
+  background-color: #3A9A43 !important;
+  color: white !important;
+}
+
+.arrivalTexts {
+  width: 60%;
+  margin-right: 21px;
+}

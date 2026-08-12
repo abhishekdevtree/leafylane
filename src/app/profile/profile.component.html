@@ -1,0 +1,81 @@
+<div class="container">
+
+    <div class="responsiveHeader d-none">
+        <div class="d-flex align-items-center justify-content-between mt-4">
+            <h1>{{auth.user?.name?.split(' ')[0]}}'s Profile</h1>
+            <button class="open-btn" (click)="toggleMenu('open')"><i class="fa-solid fa-bars"></i></button>
+        </div>
+
+        <div class="wrapper-main"  [class.activeNav]="isMenuActive">
+            <div class="leftSideBox">
+                <div class="userInfo">
+                    <div class="d-flex" style="gap: 15px;">
+                        <img src="../../assets/images/userImg.png" alt="user img" class="userImg">
+                        <div class="greetUser">
+                            <span>Hello,</span>
+                            <p class="mb-0">{{auth.user?.name}}</p>
+                        </div>
+                    </div>
+                    <button class="closeBtn" (click)="toggleMenu('close')"><i class="fa-solid fa-times"></i></button>
+                </div>
+                <div class="actionBtns">
+                    <button [class.active]="targetMenuItem ==  'account-info' || this.router.url ==  '/profile'" (click)="router.navigate(['/profile/account-info'], {relativeTo:this.route});"><i class="fa-solid fa-user"></i> Account Info</button>
+                    <button [class.active]="targetMenuItem ==  'my-orders'" (click)="router.navigate(['/profile/my-orders'], {relativeTo:this.route});"><i class="fa-solid fa-cart-shopping"></i> My Orders</button>
+                    <button [class.active]="targetMenuItem ==  'my-wishlist'" (click)="router.navigate(['/profile/my-wishlist'], {relativeTo:this.route});"><i class="fa-solid fa-heart"></i> Wishlist</button>
+                    <button [class.active]="targetMenuItem ==  'address'" (click)="router.navigate(['/profile/address'], {relativeTo:this.route});"><i class="fa-solid fa-list"></i> My Addresses</button>
+                    <button [class.active]="targetMenuItem ==  'change-password'" (click)="router.navigate(['/profile/change-password'], {relativeTo:this.route});"><i class="fa-solid fa-lock"></i> Change Password</button>
+                    <!-- <button [class.active]="targetMenuItem ==  'customer-care'" (click)="router.navigate(['/profile/customer-care'], {relativeTo:this.route});"><i class="fa-solid fa-question"></i> Customer Care</button> -->
+                    <!-- <button [class.active]="targetMenuItem ==  'support-chat'" (click)="router.navigate(['/profile/support-chat'], {relativeTo:this.route});"><i class="fa-solid fa-message-smile"></i> Support Chat</button> -->
+                    <button (click)="auth.logout();router.navigate(['/']);"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</button>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 d-block">
+            <div class="leftSideBox">
+                <div class="userInfo">
+                    <img src="../../assets/images/userImg.png" alt="user img" class="userImg">
+                    <div class="greetUser">
+                        <span>Hello,</span>
+                        <p>Abhishek Bharti</p>
+                    </div>
+                </div>
+                <div class="actionBtns">
+                    <button [class.active]="targetMenuItem ==  'account-info' || this.router.url ==  '/profile'" (click)="router.navigate(['/profile/account-info'], {relativeTo:this.route});"><i class="fa-solid fa-user"></i> Account Info</button>
+                    <button [class.active]="targetMenuItem ==  'my-orders'" (click)="router.navigate(['/profile/my-orders'], {relativeTo:this.route});"><i class="fa-solid fa-cart-shopping"></i> My Orders</button>
+                    <button [class.active]="targetMenuItem ==  'my-wishlist'" (click)="router.navigate(['/profile/my-wishlist'], {relativeTo:this.route});"><i class="fa-solid fa-heart"></i> Wishlist</button>
+                    <button [class.active]="targetMenuItem ==  'address'" (click)="router.navigate(['/profile/address'], {relativeTo:this.route});"><i class="fa-solid fa-list"></i> My Addresses</button>
+                    <button [class.active]="targetMenuItem ==  'change-password'" (click)="router.navigate(['/profile/change-password'], {relativeTo:this.route});"><i class="fa-solid fa-lock"></i> Change Password</button>
+                    <!-- <button [class.active]="targetMenuItem ==  'customer-care'" (click)="router.navigate(['/profile/customer-care'], {relativeTo:this.route});"><i class="fa-solid fa-question"></i> Customer Care</button> -->
+                    <!-- <button [class.active]="targetMenuItem ==  'support-chat'" (click)="router.navigate(['/profile/support-chat'], {relativeTo:this.route});"><i class="fa-solid fa-message-smile"></i> Support Chat</button> -->
+                    <button (click)="auth.logout()"><i class="fa-solid fa-arrow-right-from-bracket" ></i> Log Out</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-12">
+            <div class="rightSideBox">
+                <ng-container *ngIf="targetMenuItem == 'account-info' || this.router.url ==  '/profile'">
+                    <app-account-info></app-account-info>
+                </ng-container>
+                <ng-container *ngIf="targetMenuItem ==  'my-orders'">
+                    <app-orders></app-orders>
+                </ng-container>
+                <ng-container *ngIf="targetMenuItem ==  'my-wishlist'">
+                    <app-wishlist></app-wishlist>
+                </ng-container>
+                <ng-container *ngIf="targetMenuItem ==  'address'">
+                    <app-address></app-address>
+                </ng-container>
+                <ng-container *ngIf="targetMenuItem ==  'change-password'">
+                    <app-password></app-password>
+                </ng-container>
+                <!-- <ng-container *ngIf="targetMenuItem ==  'support-chat'">
+                    <app-chat></app-chat>
+                </ng-container> -->
+            </div>
+        </div>
+    </div>
+</div>

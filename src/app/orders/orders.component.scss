@@ -1,0 +1,277 @@
+.title {
+    font-weight: 600;
+    // margin-top: 4rem;
+    // margin-bottom: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 2.1rem;
+    font-size: 21px;
+}
+
+.orderBox {
+    border-radius: 30px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.orderBoxTop {
+    padding: 18px 18px 12px;
+
+}
+
+.rightBox1 {
+    display: flex;
+}
+
+.orderBoxBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 18px;
+    background-color: #F4F4F4;
+    height: 4.8rem;
+    border-radius: 18px;
+
+    p {
+        margin-bottom: 0;
+        font-size: 14px;
+        color: #333;
+
+        span {
+            color: #009f28;
+            font-size: 20px;
+            position: relative;
+            top: 2px;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+        background: black;
+        padding: 7px 18px;
+        border-radius: 30px;
+        font-size: 14px;
+    }
+}
+
+.idText {
+    color: #B8B8B8;
+    font-size: 20px;
+}
+
+.rightBox1 {
+    position: relative;
+    bottom: 12px;
+}
+
+.idNumber {
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.arriveAt {
+    background-color: #c6f7d0;
+    color: #097c14;
+    padding: 8px 15px;
+    border-radius: 33px;
+    font-size: 14px;
+    margin-right: 1rem;
+}
+
+.deliverAt {
+    background-color: #ffffff;
+    padding: 8px 15px;
+    border-radius: 33px;
+    font-size: 14px;
+}
+
+.orderedItems {
+    padding: 11px 11px 0;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.customBox {
+    // height: 9rem;
+    padding-bottom: 7px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /* width */
+    &::-webkit-scrollbar {
+        width: 4px;
+
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: transparent;
+
+        position: relative;
+        right: 10px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #E6E6E6;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+}
+
+.flexBox1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.orderTrackDetails {
+    margin: 15px 0 28px;
+    ;
+
+    i {
+        font-size: 25px;
+    }
+}
+
+.productDetails {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 3px;
+    align-items: center;
+}
+
+.dNone {
+    display: unset;
+}
+
+.dBlock {
+    display: none;
+}
+
+.productImg {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.productBox {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    p {
+        font-size: 12px;
+        color: #A5A5A5;
+        margin-bottom: 0;
+
+        i {
+            font-size: 9px;
+        }
+    }
+}
+
+.productName {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
+
+.productCategory {
+    text-decoration: none;
+    color: #CF8A4F;
+    font-size: 13px;
+}
+
+.location {
+    border-bottom: 1.8px dotted #414141;
+    width: -webkit-fill-available;
+    text-align: center;
+    margin: 0px 9px;
+    font-size: 14px;
+    color: #000000;
+}
+
+@media screen and (max-width:550px) {
+
+    .orderBoxTop {
+        position: relative;
+    }
+
+    .orderArrivalDetails {
+        gap: 1px;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+        flex-direction: column;
+    }
+
+    .orderBoxTop {
+        padding: 15px 12px 12px;
+    }
+
+    .rightBox1 {
+        // flex-direction: column;
+        gap: 6px;
+        bottom: 0;
+        top: 12px;
+    }
+
+    .leftBox1 {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .arriveAt {
+        margin-right: 0;
+        width: 40%;
+        height: fit-content;
+        padding: 6px;
+        text-align: center;
+    }
+
+    .opt2 {
+        background-color: #c6f7d0;
+        color: #097c14;
+        padding: 6px 15px;
+        border-radius: 33px;
+        font-size: 12px;
+        margin-right: 1rem;
+        position: relative;
+        /* top: 15px; */
+        /* right: -6px; */
+        margin-bottom: 7px;
+        width: fit-content;
+    }
+
+    .idNumber {
+        font-size: 17px;
+    }
+
+    .idText{
+        font-size: 17px;
+    }
+
+    .dNone {
+        display: none;
+    }
+
+    .dBlock {
+        display: block;
+    }
+
+    .orderBoxBottom p {
+        span {
+            font-size: 16px;
+        }
+    }
+
+    .orderBoxBottom a {
+        padding: 7px 15px;
+        font-size: 12px;
+    }
+}

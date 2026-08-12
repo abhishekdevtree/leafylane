@@ -1,0 +1,134 @@
+<div class="cartPage" *ngIf="userService.cart.items && userService.cart.items.length">  
+    <div class="container">
+        <div class="d-flex flexColumn">
+            <div class="leftSideBox">
+                <div class="position flexBox3">
+                    <div class="boxPosition">
+                        <p class="number">1</p>
+                        <p class="step">Cart</p>
+                    </div>
+                    <div class="boxPosition2">
+                        <p class="numberPending">2</p>
+                        <p class="step">Address</p>
+                    </div>
+                    <div class="boxPosition3">
+                        <p class="numberPending">3</p>
+                        <p class="step">Payment</p>
+                    </div>
+                </div>
+                <div class="leftContainer flexBox1 borderBottom pb33">
+                    <h3 class="titleText">Shopping Cart</h3>
+                    <h3 class="titleText">{{userService.cart.items.length}} Item(s)</h3>
+                </div>
+                <div class="productList pt33 pb33">
+                    <div class="row dBlockWeb">
+                        <div class="col-md-6">
+                            <p class="productTitle">Product Details</p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex justify-content-between">
+                                <p class="productTitle titleOne">Quantity</p>
+                                <p class="productTitle titleTwo">Price</p>
+                                <p class="productTitle titleThree">Total</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="productList pb33" *ngFor="let item of userService.cart.items;let id = index">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-flex gap21 mb-20" *ngIf="item && item.productInfo">
+                                <a [routerLink]="'/product/'+item.product">
+                                    <img [src]="item?.productInfo?.images[0]?.regular" class="productImage" alt="product images" *ngIf="item?.productInfo?.images?.length">
+                                    <img src="../../assets/images/pot1.png" class="productImage" alt="product images" *ngIf="!item?.productInfo?.images?.length">
+                                </a>
+                                <div class="productDetails">
+                                    <a [routerLink]="'/product/'+item.product">
+                                        <h3 class="productName">{{item?.productInfo?.title}}</h3>
+                                    </a>
+                                    <a routerLink="/tags">
+                                        <p class="category">{{item.productInfo.categoryInfo.title}}</p>
+                                    </a>
+                                    <button (click)="removeFromCart(item)">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="boxOne w33">
+                                    <div class="countBox flexBox2">
+                                        <button (click)="updateCart(item, -1)"><i class="fa-solid fa-minus"></i></button>
+                                        <input type="number" (keyup)="item.qty > 1 && updateDirect(item, $event)" [(ngModel)]="item.qty">
+                                        <button (click)="updateCart(item, 1)"><i class="fa-solid fa-plus"></i></button>
+                                    </div>
+                                </div>
+                                <div class="box w33">
+                                    <p class="priceTag tagOne text-end mr1">₹ {{item.price}}</p>
+                                </div>
+                                <div class="box w33">
+                                    <p class="priceTag tagTwo text-end">₹ {{item.price*item.qty}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="dBlockWeb">
+                    <div class="navigationButton d-flex align-items-center justify-content-between">
+                        <a routerLink=""><i class="fa-solid fa-arrow-left-long"></i> Continue Shoppping</a>
+                        <div class="finalChechout">
+                            <a (click)="emptyCart()" class="mobile-btn" type="button" style="background-color: #F5F5F6;color: black;">Clear All</a>
+                            <a class="text-white mobile-btn" routerLink="/checkout">Continue To Checkout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rightSideBox" *ngIf="userService.cart.items && userService.cart.items.length">
+                <div class="rightContainer borderBottom pb33">
+                    <h3 class="titleText">Order Summary</h3>
+                </div>
+                <div class="priceSection pt33 pb33 flexBox1">
+                    <p class="orderDetailText">ITEM(S) {{userService.cart.items.length}}</p>
+                    <p class="orderDetailText">₹ {{userService.cart.final_cart_value}}</p>
+                </div>
+                <div class="shipping pb33">
+                    <p class="orderDetailText mb21">Shipping</p>
+                    <select name="delivery" id="delivery" class="form-select shadow-none">
+                        <option value="standard">Standard Delivery - ₹{{globals.deliveryCharges}}</option>
+                        <!-- <option value="express">Express Delivery - ₹ 10</option> -->
+                    </select>
+                </div>
+                <div class="promoSection borderBottom pb33">
+                    <p class="orderDetailText mb21">promo code</p>
+                    <input type="text" placeholder="Enter Your Code" class="mb21">
+                    <button class="">Apply</button>
+                </div>
+                <div class="checkoutSection flexBox1 pt33">
+                    <p class="orderDetailText">Total cost</p>
+                    <p class="orderDetailText">₹ {{userService.cart.final_cart_value}}</p>
+                </div>
+                <div class="dNoneWeb">
+                    <div class="navigationButton d-flex align-items-center justify-content-between">
+                        <a routerLink="" class="mobile-btn-font-size"><i class="fa-solid fa-arrow-left-long"></i> Continue Shoppping</a>
+                        <div class="finalChechout">
+                            <a class="text-white mobile-btn mobile-btn-font-size" routerLink="/checkout">Checkout</a>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>       
+    </div>
+</div>
+
+<div class="productNotFound" *ngIf="userService.cart.items && !userService.cart.items.length">
+    <div class="cartPage">
+      <div class="container">
+          <div class="flexBox">
+            <img src="../../assets/images/cart3.png" alt="empty cart image">
+              <h1>Your cart is empty.</h1>
+              <p>Looks like you don't have added any product to cart. Go ahead and help us to make earth green</p>
+              <button class="btn unsubscribe-btn" (click)="router.navigate(['/products']);"><i class="fa-solid fa-cart-shopping"></i> Products</button>
+          </div>
+      </div>
+    </div>
+</div>

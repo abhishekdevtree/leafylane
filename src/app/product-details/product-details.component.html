@@ -1,0 +1,311 @@
+<div class="details" *ngIf="products.length">
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="productImg">
+          <div class="displayWeb" *ngIf="products.length">
+            <div class="mainImg d-flex justify-content-center align-items-center">
+              <lib-ngx-image-zoom style="display:block; height: 34rem;" [thumbImage]="bannerImg" [fullImage]="largerImg"
+                [magnification]="1.5" [enableLens]="true" [lensWidth]="150" [lensHeight]="150"
+                [circularLens]="false"></lib-ngx-image-zoom>
+              <!-- <lib-my-ng-img-magnifier
+                    [thumbImage]="bannerImg"
+                    [fullImage]="largerImg"
+                    [imgWidth]="'100%'"
+                    [imgHeight]="'auto'"
+                    [top]="0"
+                    [right]="-100"
+                    [lensWidth]="150"
+                    [lensHeight]="150"
+                    [resultWidth]="100"
+                    [resultHeight]="100"
+                  ></lib-my-ng-img-magnifier> -->
+            </div>
+          </div>
+
+          <div class="displayMobile">
+            <div class="mainImg d-flex justify-content-center align-items-center ">
+              <img [src]="bannerImg" alt="bannerImg">
+            </div>
+          </div>
+
+          <div class="carouselBox" *ngIf="products.length">
+            <owl-carousel-o [options]="customOptions">
+              <ng-container *ngFor="let slide of products[0].images,let i = index" class="mx-2">
+                <ng-template carouselSlide [id]="i+'a'">
+                  <div class="imgContainer" style="width: 111px;" [class.active]="i == imgId">
+                    <img [src]="slide.regular" [alt]="slide.regular" class="carouselImg"
+                      (click)="setBannerImg(slide.regular,i)">
+                  </div>
+                </ng-template>
+              </ng-container>
+            </owl-carousel-o>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="productDetails border" *ngIf="products.length">
+          <p class="tags">Category: {{products[0].categoryInfo?.title}}</p>
+          <p class="title">{{products[0].title}}</p>
+          <div class="reviewBox">
+            <div class="d-flex align-items-center">
+              <div class="stars">
+                <i class="las la-star" [class.star-rating]="rating >= 1"></i>
+                <i class="las la-star" [class.star-rating]="rating >= 2"></i>
+                <i class="las la-star" [class.star-rating]="rating >= 3"></i>
+                <i class="las la-star" [class.star-rating]="rating >= 4"></i>
+                <i class="las la-star" [class.star-rating]="rating == 5"></i>
+              </div>
+              <a [href]="'product/'+targetProductId+'/#review'" class="review">(1 Review)</a>
+              <span>|</span>
+              <button class="writeReview" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Write a
+                review</button>
+            </div>
+          </div>
+          <div class="priceBox d-flex align-items-center">
+            <h1>₹ {{products[0].final_price}}</h1>
+            <s>₹ {{products[0].base_price}}</s>
+          </div>
+          <p class="availability">Availblity: <span [class.text-danger]="!products[0].in_stock">{{products[0].in_stock?"In Stock":"Out Of Stock"}}</span></p>
+          <div class="descriptionBox">
+            <p class="description" [innerHTML]="products[0]?.longDescription"></p>
+          </div>
+          <div class="size mb-3">
+            <label for="size">Size:</label>
+            <select name="size" id="size" class="form-select">
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
+            </select>
+          </div>
+
+          <div class="cartBox d-flex align-items-center gap-3">
+            <p class="qty mb-0"
+              *ngIf="!(userService.cart?.items && (userService.cart?.items | filterBy: { product: products[0]['_id'] }).length)">
+              Qty</p>
+            <div class="qytBtns d-flex align-items-center justify-content-between border"
+              *ngIf="!(userService.cart?.items && (userService.cart?.items | filterBy: { product: products[0]['_id'] }).length)">
+              <p>{{quantity}}</p>
+              <div class="btnBox d-flex flex-column">
+                <button class="border" (click)="productQuantity('increase')"><i class="fa-solid fa-plus"></i></button>
+                <button class="border" (click)="productQuantity('decrease')"><i class="fa-solid fa-minus"></i></button>
+              </div>
+            </div>
+            <button class="mainAddBtn" (click)="addToCart(products[0])" [disabled]="!products[0].in_stock"><span
+                *ngIf="!(userService.cart?.items && (userService.cart?.items | filterBy: { product: products[0]['_id'] }).length)">+
+                Add to cart</span> <span
+                *ngIf="userService.cart?.items && (userService.cart?.items | filterBy: { product: products[0]['_id'] }).length">In
+                cart</span></button>
+          </div>
+          <div class="actionBox d-flex">
+            <a href="#"><i class="fa-solid fa-sort"></i> Compare this Product</a>
+            <button (click)="addWishlist()" *ngIf="!wishList"><i class="fa-regular fa-heart"></i> Add to
+              wishlist</button>
+            <button (click)="addWishlist()" *ngIf="wishList"><i class="fa-solid fa-heart"
+                style="color: rgb(255, 73, 73);"></i> Remove from wishlist</button>
+          </div>
+          <div class="featureBox d-flex border-top border-bottom">
+            <div class="feature feature1 d-flex">
+              <img src="../../assets/images/freeShipping.png" class="featureImg" alt="Feature Img">
+              <p>Free Shipping <br> Ships Today</p>
+            </div>
+            <div class="feature feature2 d-flex">
+              <img src="../../assets/images/arrow.png" class="featureImg" alt="Feature Img">
+              <p>Easy <br> Returns</p>
+            </div>
+            <div class="feature feature3 d-flex">
+              <img src="../../assets/images/priceTag.png" class="featureImg" alt="Feature Img">
+              <p>Lowest Price <br> Guarntee</p>
+            </div>
+          </div>
+
+          <div class="shareBox">
+            <p class="shareHeading">Share this product</p>
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-google-plus-g"></i></a>
+            <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reviewDescription" id="review">
+
+      <div class="contentBox">
+        <h3 class="mainHeading pb-0 mb-4">Product Description</h3>
+        <div class="descriptionText" *ngIf="description" [innerHTML]="products[0].description">
+
+        </div>
+        <div class="reviewText" *ngIf="review">
+          <h3 class="mainHeading pb-0 mb-4 mt-4">Feedback</h3>
+
+          <div class="reviewContentBox d-flex">
+            <img src="https://cdn.dtsdev.xyz/product/1764231044916.webp" alt="user image">
+            <div class="reviewText">
+              <h3 class="mb-0 userName">Abhishek Bharti <span>. 21 June, 2024</span></h3>
+              <div class="stars">
+                <i class="las la-star"></i>
+                <i class="las la-star"></i>
+                <i class="las la-star"></i>
+                <i class="las la-star"></i>
+                <i class="las la-star"></i>
+              </div>
+              <div class="starBox">
+              </div>
+              <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptatum odio accusamus,
+                quisquam, eaque voluptatibus distinctio beatae possimus ad totam saepe corrupti! Possimus, nesciunt
+                fugit quibusdam incidunt esse minus doloremque? "</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container margintop">
+    <div class="dealsHead row">
+      <div class="col-6">
+        <h3 class="mainHeading pb-0">Related Products</h3>
+      </div>
+      <div class="col-6">
+        @if (productsList && productsList.length > 1) {
+          <div class="buttons text-end">
+            <button class="sliderBtn marginRight" type="button" data-bs-target="#carouselExampleControls"
+              data-bs-slide="prev">
+              < </button>
+                <button class="sliderBtn" type="button" data-bs-target="#carouselExampleControls"
+                  data-bs-slide="next">></button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="carouselSection mb-4">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item" [class.active]="i==0" *ngFor="let products of productsList,let i = index">
+          <div class="container">
+            <div class="row gy-3">
+              <div class="col-lg-3 col-md-6" *ngFor="let item of products,let ic = index">
+                <div class="productLink" (click)="router.navigate(['/product/'+item._id])">
+                  <div class="card cardSecond" [class.not-avilable]="!item.in_stock"
+                          (click)="router.navigate(['/product/' + item._id])">
+                          <div class="img-container position-relative">
+                            <img [src]="item.images.length ? item.images[0].regular : 'assets/images/pot1.png'"
+                              class="card-img-top" alt="pot images" />
+                            @if (!item.in_stock) {
+                            <p class="out-stock">Out of stock</p>
+                            }
+                          </div>
+
+                          <div class="card-body">
+                            <p class="card-text">{{ item.title }}</p>
+
+                            <div class="d-flex justify-content-between">
+                              <div class="stars">
+                                <i class="las la-star" [class.star-rating]="rating >= 1"></i>
+                                <i class="las la-star" [class.star-rating]="rating >= 2"></i>
+                                <i class="las la-star" [class.star-rating]="rating >= 3"></i>
+                                <i class="las la-star" [class.star-rating]="rating >= 4"></i>
+                                <i class="las la-star" [class.star-rating]="rating == 5"></i>
+                              </div>
+
+                              <button class="addCart" (click)="$event.stopPropagation();addToCart(item)"
+                                [class.inCart]="userService.cart?.items && (userService.cart.items | filterBy: { product: item['_id'] }).length"
+                                [disabled]="!item.in_stock"><i class="las la-shopping-cart"></i></button>
+                      </div>
+                      <p class="priceNow">₹{{item.final_price}}</p>
+                      <s class="priceBefore">₹{{item.base_price}}</s>
+                      <span class="discountTag">-{{item.disount_percent}}%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="productNotFound" *ngIf="!products.length && !isLoading">
+  <div class="cartPage">
+    <div class="container">
+      <div class="flexBox">
+        <i class="fa-regular fa-face-frown mailIcon"></i>
+        <h1>Unable to find product details</h1>
+        <p>Click the button below to go products section</p>
+        <button class="btn unsubscribe-btn" (click)="router.navigate(['/products']);"><i
+            class="fa-solid fa-cart-shopping"></i> Products</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="loader" *ngIf="!products.length && isLoading"></div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Review</h5>
+        <button type="button" class="btnClose" data-bs-dismiss="modal" aria-label="Close"><i
+            class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="userReview">
+          <div class="mb-4">
+            <label for="exampleInputEmail1" class="form-label">Title</label>
+            <input type="email" class="form-control" id="title" aria-describedby="title"
+              placeholder="Enter Title Here..." formControlName="title">
+          </div>
+          <div class="starBox">
+            <label for="exampleInputEmail1" class="form-label">Rate this product</label>
+            <div class="stars mb-4">
+              <i class="las la-star" [class.leastStar]="rating == 1" [class.activeStar]="rating >= 1"
+                (click)="changeRating(1)"></i>
+              <i class="las la-star" [class.activeStar]="rating >= 2" (click)="changeRating(2)"></i>
+              <i class="las la-star" [class.activeStar]="rating >= 3" (click)="changeRating(3)"></i>
+              <i class="las la-star" [class.activeStar]="rating >= 4" (click)="changeRating(4)"></i>
+              <i class="las la-star" [class.activeStar]="rating >= 5" (click)="changeRating(5)"></i>
+              <span *ngIf="rating == 1" [class.ratingColor1]="rating == 1" class="ratingText">Very Bad</span>
+              <span *ngIf="rating == 2" [class.leastStar]="rating == 2" class="ratingText">Bad</span>
+              <span *ngIf="rating == 3" [class.ratingColor2]="rating == 3" class="ratingText">Good</span>
+              <span *ngIf="rating == 4" [class.ratingColor2]="rating == 4" class="ratingText">Very Good</span>
+              <span *ngIf="rating == 5" [class.ratingColor2]="rating == 5" class="ratingText">Excellent</span>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" style="height: 150px;"
+              placeholder="Enter Description Here..." formControlName="description"></textarea>
+          </div>
+          <div class="">
+            <label for="fileInput" class="form-label" style="margin-bottom: 1rem;">Uplode Product Images</label>
+            <div class="d-flex align-items-center flex-wrap" style="gap: 1.5rem;">
+              <ng-container *ngIf="reviewImg && reviewImg.length">
+                <div class="imgBox" *ngFor="let imgSrc of reviewImg;let i = index">
+                  <img [src]="imgSrc" class="productFeedbackImg" alt="product image">
+                  <button class="deleteImg" (click)="deleteReviewImg(i)"><i
+                      class="fa-solid fa-circle-xmark"></i></button>
+                </div>
+              </ng-container>
+              <div class="imgBox">
+                <button (click)="fileInput.click()" title="Upload Product Image" class="browseBtn"></button>
+                <input style="display: none" type="file" accept="image/gif, image/jpeg, image/png"
+                  (change)="handleFileInput($event.target.files)" #fileInput>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="closeBtnBottom" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="uploadBtn" (click)="updateReview()">Post Review</button>
+      </div>
+    </div>
+  </div>
+</div>
